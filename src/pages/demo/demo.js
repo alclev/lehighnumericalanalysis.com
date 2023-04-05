@@ -16,7 +16,7 @@ function Demo() {
   return (
     <div>
       <p>First trial of embedding webassembly</p>
-      <p>{result}</p>
+      <p>test {result}</p>
     </div>
   );
 }
