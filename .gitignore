@@ -1,0 +1,4 @@
+# Ignore all directories except for "build"
+*/
+!build/
+
