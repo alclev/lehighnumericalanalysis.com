@@ -9,6 +9,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        <h1>2023 Capstone Research</h1>
         <header className="App-header">
         <nav className = "link-nav">
             <ul>
@@ -16,10 +17,10 @@ function App() {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/about">About</Link>
+                <Link to="/demo">Demo</Link>
               </li>
               <li>
-                <Link to="/demo">Demo</Link>
+                <Link to="/about">About</Link>
               </li>
             </ul>
         </nav>
@@ -31,11 +32,8 @@ function App() {
           <img src={logo} className="App-logo" alt="logo" />
           
           <p>
-            2023 Capstone Research
-          </p>
-          <a>
             Alex Clevenger, Luke Hale, Micheal Speckhart, Diep Luong
-          </a>
+          </p>
         </header>
       </div>
     </BrowserRouter>
