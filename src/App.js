@@ -10,7 +10,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <header className="App-header">
-        <nav>
+        <nav className = "link-nav">
             <ul>
               <li>
                 <Link to="/">Home</Link>
