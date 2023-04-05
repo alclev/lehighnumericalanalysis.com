@@ -7,7 +7,7 @@ async function Demo() {
       memory: new WebAssembly.Memory({ initial: 256 }),
     }
   };
-  fetch('main.wasm').then(response =>
+  fetch('add.wasm').then(response =>
     response.arrayBuffer()
   ).then(bytes =>
     WebAssembly.instantiate(bytes, importObject)

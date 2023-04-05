@@ -1,13 +1,14 @@
 /* This is an example c++ program for compiling and testing webassembly */
 
+#include <emscripten/emscripten.h>
+
 extern "C" {
-    int add(int x, int y) {
-        return x + y;
-    }
+  EMSCRIPTEN_KEEPALIVE int Sum(int a, int b) {
+    return a + b;
+  }
 }
 
 int main() {
-    // your code here
     return 0;
 }
 
