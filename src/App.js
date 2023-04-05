@@ -9,9 +9,8 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <h1>2023 Capstone Research</h1>
         <header className="App-header">
-        <nav className = "link-nav">
+          <nav className = "link-nav">
             <ul>
               <li>
                 <Link to="/">Home</Link>
@@ -23,7 +22,8 @@ function App() {
                 <Link to="/about">About</Link>
               </li>
             </ul>
-        </nav>
+          </nav>
+          <h1>2023 Capstone Research</h1>         
           <Routes>
             <Route exact path="/" component={Home} />
             <Route exact path="/demo" component={Demo} />
