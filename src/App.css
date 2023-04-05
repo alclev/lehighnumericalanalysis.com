@@ -37,28 +37,3 @@
   }
 }
 
-.nav-links {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
-.nav-links ul {
-  display: flex;
-  list-style: none;
-}
-
-.nav-links li {
-  margin: 0 10px;
-}
-
-.nav-links a {
-  font-size: 24px;
-  color: #ffffff;
-  text-decoration: none;
-}
-
-.nav-links a:hover {
-  color: #c7c7c7;
-}
