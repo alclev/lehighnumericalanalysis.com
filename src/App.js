@@ -13,27 +13,21 @@ function App() {
           <nav className = "link-nav">
             <ul>
               <li>
-                <a href="/">
-                    <Link to="/">Home</Link>
-                </a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a href="/demo">
-                    <Link to="/demo">Demo</Link>
-                </a>
+                <Link to="/demo">Demo</Link>
               </li>
               <li>
-                <a href="/about">
-                    <Link to="/about">About</Link>
-                </a>
+                <Link to="/about">About</Link>
               </li>
             </ul>
           </nav>
           <h1>2023 Capstone Research</h1>         
           <Routes>
-            <Route exact path="/" component={< Home />} />
-            <Route exact path="/demo" component={< Demo />} />
-            <Route path="/about" component={< About />} />
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/demo" element={<Demo />} />
+            <Route path="/about" element={<About />} />
           </Routes>
           <img src={logo} className="App-logo" alt="logo" />
           
