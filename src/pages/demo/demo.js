@@ -7,14 +7,14 @@ async function Demo() {
       memory: new WebAssembly.Memory({ initial: 256 }),
     }
   };
-  fetch('add.wasm').then(response =>
-    response.arrayBuffer()
-  ).then(bytes =>
-    WebAssembly.instantiate(bytes, importObject)
-  ).then(results => {
-    const Sum = results.instance.exports.Sum;
-    console.log(Sum(2,3));
-    console.log(Sum(1000, 23));
+
+  WebAssembly.instantiateStreaming(
+    fetch('main.wasm'),
+    importObject
+  ).then(result => {
+    const Sum = result.instance.exports.Sum;
+    console.log(Sum(4, 5));
+    console.log(Sum(10, 10));
   });
   return (
     <div>
