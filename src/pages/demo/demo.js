@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import add from './add.wasm';
 
-function Demo() {
-  const [result, setResult] = useState('');
-
-  useEffect(() => {
-    // Load the WebAssembly module
-    WebAssembly.instantiateStreaming(fetch('add.wasm'))
-      .then(module => {
-        // Call the add function exported from the module
-        const result = module.instance.exports.add(2, 2);
-        setResult(`The result of 2 + 2 is ${result}.`);
-        console.log(`The result of 2 + 2 is ${result}.`)
-      });
-  }, []);
+async function Demo() {
+  let result = 0;
+  WebAssembly.instantiateStreaming(fetch("add.wasm"), add).then(
+    (results) => {
+      console.log(results.instance.exports.add(1, 2));
+    }
+  );  
 
   return (
     <div>
