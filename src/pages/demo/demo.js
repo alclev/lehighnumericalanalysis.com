@@ -1,21 +1,13 @@
 import React from 'react';
 
-async function Demo() {
-  const importObject = {
-    module: {},
-    env: {
-      memory: new WebAssembly.Memory({ initial: 256 }),
-    }
-  };
-
-  WebAssembly.instantiateStreaming(
-    fetch('main.wasm'),
-    importObject
-  ).then(result => {
-    const Sum = result.instance.exports.Sum;
-    console.log(Sum(4, 5));
-    console.log(Sum(10, 10));
-  });
+function Demo() {
+  function instantiate(bytes, imports) {
+    return WebAssembly.compile(bytes).then(m => new WebAssembly.Instance(m, imports));
+  }
+  var importObject = { imports: { i: arg => console.log(arg) } };  
+  fetch('add.wasm').then(response => response.arrayBuffer())
+  .then(bytes => instantiate(bytes, importObject))
+  .then(instance => instance.exports.e());
   return (
     <div>
       <p>First trial of embedding webassembly</p>

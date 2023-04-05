@@ -6,10 +6,6 @@ extern "C" {
     }
 }
 
-int main() {
-    return 0;
-}
-
 /* 
     em++ -std=c++17 test.cpp -Os -s WASM=1 -s SIDE_MODULE=1 -s BINARYEN_ASYNC_COMPILATION=0 -o add.wasm
  */ 
