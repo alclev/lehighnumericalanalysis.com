@@ -1,18 +1,18 @@
 import React from 'react';
-import add from './add.wasm';
 
 async function Demo() {
+  const importObject = {
+    imports: { imported_func: (arg) => console.log(arg) },
+  };
   let result = 0;
-  WebAssembly.instantiateStreaming(fetch("add.wasm"), add).then(
-    (results) => {
-      console.log(results.instance.exports.add(1, 2));
-    }
-  );  
+  WebAssembly.instantiateStreaming(fetch("add.wasm"), importObject).then(
+    (obj) => result = obj.instance.exports.exported_func(2, 2)
+  );
 
   return (
     <div>
       <p>First trial of embedding webassembly</p>
-      <p>test {result}</p>
+      <p>Result: {result}</p>
     </div>
   );
 }
