@@ -12,5 +12,5 @@ int main() {
 }
 
 /* 
-    em++ -O3 test.cpp -o add.wasm
+    em++ -std=c++17 test.cpp -Os -s WASM=1 -s SIDE_MODULE=1 -s BINARYEN_ASYNC_COMPILATION=0 -o add.wasm
  */ 
