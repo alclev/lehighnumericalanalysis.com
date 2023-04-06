@@ -1,8 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Routes, Route, Link} from 'react-router-dom';
 import Home from './pages/home';
-import Demo from './pages/demo';
+import Demo from './pages/demo/demo';
 import About from './pages/about';
 
 function App() {
@@ -29,7 +28,6 @@ function App() {
             <Route exact path="/demo" element={<Demo />} />
             <Route path="/about" element={<About />} />
           </Routes>
-          <img src={logo} className="App-logo" alt="logo" />
           
           <p>
             Alex Clevenger, Luke Hale, Micheal Speckhart, Diep Luong

@@ -1,0 +1,62 @@
+.matrix-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .matrix-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .matrix-canvas-container {
+    position: relative;
+  }
+  
+  .matrix-canvas {
+    display: block;
+    margin: 30px auto;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .matrix-canvas {
+      margin: 10px auto;
+    }
+  }
+  
+  .Home-logo1, .Home-logo2 {
+    position: absolute;
+    top: 35vmin;
+    bottom: 0;
+    height: 50vmin;
+    pointer-events: none;
+  }
+  
+  .Home-logo1 {
+    left: 5vmin;
+  }
+  
+  .Home-logo2 {
+    right: 5vmin;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .Home-logo1, .Home-logo2 {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
