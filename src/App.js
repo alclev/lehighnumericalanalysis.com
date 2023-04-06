@@ -29,7 +29,7 @@ function App() {
             <Route path="/about" element={<About />} />
           </Routes>
           
-          <p>
+          <p className="Signature">
             Alex Clevenger, Luke Hale, Micheal Speckhart, Diep Luong
           </p>
         </header>
