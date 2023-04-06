@@ -30,7 +30,7 @@ function App() {
           </Routes>
           
           <p className="Signature">
-            Alex Clevenger, Luke Hale, Micheal Speckhart, Diep Luong
+            Alex Clevenger, Luke Hale, Michael Speckhart, Diep Luong
           </p>
         </header>
       </div>
