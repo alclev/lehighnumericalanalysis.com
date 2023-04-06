@@ -62,9 +62,7 @@ h1 {
 .Signature{
   font-family: 'Raleway', sans-serif;
   font-size: 1.5rem;
-  font-weight: bold;
   color: #fff;
-  text-shadow: 3px 3px 0px #1a1a1a, 5px 5px 0px #181818, 7px 7px 0px #161616, 9px 9px 0px #141414, 11px 11px 0px #121212, 13px 13px 0px #101010, 15px 15px 0px #0e0e0e;
   margin-bottom: 2rem;
 }
 
