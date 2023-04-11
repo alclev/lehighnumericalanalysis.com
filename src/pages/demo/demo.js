@@ -1,7 +1,6 @@
-
 function Demo() {
   // Load the add.js module
-  fetch('add.js')
+  fetch('add.wasm')
     .then(response => response.arrayBuffer())
     .then(buffer => WebAssembly.instantiate(buffer))
     .then(module => {
@@ -11,8 +10,10 @@ function Demo() {
       // Call the _add function and print the result
       const result = add(2, 3);
       console.log(result); // Output: 5
-  });
-
+    })
+    .catch(error => {
+      console.log('Error caught: ', error);
+    });
 }
 
 export default Demo;
