@@ -1,29 +1,38 @@
 import React, { useState, useEffect } from 'react';
 
 function Demo() {
-  const [wasmModule, setWasmModule] = useState(null);
+  const [worker, setWorker] = useState(null);
+  const [result, setResult] = useState(null);
 
   useEffect(() => {
-    const loadWasm = async () => {
-      const wasmModule = await import('./add.js');
-      setWasmModule(wasmModule);
+    const worker = new Worker('./workers/addWorker.js', { type: 'module' });
+    setWorker(worker);
+
+    worker.onmessage = (e) => {
+      setResult(e.data);
     };
 
-    loadWasm();
+    return () => {
+      worker.terminate();
+    };
   }, []);
 
   const add = (a, b) => {
-    if (!wasmModule) {
+    if (!worker) {
       return 'Loading...';
     }
 
-    return wasmModule.add(a, b);
+    worker.postMessage([a, b]);
   };
+
+  useEffect(() => {
+    add(2, 3);
+  }, [worker]);
 
   return (
     <div className="App">
       <h1>WebAssembly Example</h1>
-      <p>2 + 3 = {add(2, 3)}</p>
+      <p>2 + 3 = {result === null ? 'Loading...' : result}</p>
     </div>
   );
 }
