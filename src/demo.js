@@ -6,6 +6,9 @@ function Demo() {
 
   useEffect(() => {
     const worker = new Worker('./workers/add.js', { type: 'module' });
+    worker.onerror = (error) => {
+      console.error('Worker error:', error);
+    };
     console.log('Worker created:', worker);
     setWorker(worker);
 
