@@ -6,9 +6,11 @@ function Demo() {
 
   useEffect(() => {
     const worker = new Worker('./workers/add.js', { type: 'module' });
+    console.log('Worker created:', worker);
     setWorker(worker);
 
     worker.onmessage = (e) => {
+      console.log('Worker received message:', e);
       setResult(e.data);
     };
 
@@ -22,6 +24,7 @@ function Demo() {
       return 'Loading...';
     }
 
+    console.log('postMessage:', a, b);
     worker.postMessage([a, b]);
   };
 
