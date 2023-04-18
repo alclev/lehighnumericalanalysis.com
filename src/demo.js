@@ -5,7 +5,7 @@ function Demo() {
 
   useEffect(() => {
     const loadWasm = async () => {
-      const wasmModule = await import('../public/add.js');
+      const wasmModule = await import('./add.js');
       setWasmModule(wasmModule);
     };
 
