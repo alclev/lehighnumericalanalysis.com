@@ -8,4 +8,5 @@ extern "C" {
     }
 }
 
-/* emcc add.cpp -s WASM=1 -s EXPORTED_FUNCTIONS="['_add']" -o add.wasm */
+/* emcc add.cpp -O3 -s WASM=1 -s EXPORTED_FUNCTIONS='["_add"]' -s EXTRA_EXPORTED_RUNTIME_METHODS='["ccall", "cwrap"]' -o add.js
+ */
