@@ -5,7 +5,7 @@ function Demo() {
   const [result, setResult] = useState(null);
 
   useEffect(() => {
-    const worker = new Worker('./workers/addWorker.js', { type: 'module' });
+    const worker = new Worker('./workers/add.js', { type: 'module' });
     setWorker(worker);
 
     worker.onmessage = (e) => {
