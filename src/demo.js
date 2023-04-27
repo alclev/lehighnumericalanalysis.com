@@ -5,10 +5,12 @@ function Demo() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileData, setFileData] = useState(null);
   const [filename, setFilename] = useState(null);
+  const [buttonColor, setButtonColor] = useState("#CCCCCC");
 
   const handleFileInputChange = (event) => {
     setSelectedFile(event.target.files[0]);
     setFilename(event.target.files[0].name);
+    setButtonColor("#4CAF50");
   };
 
   const handleSubmit = (event) => {
@@ -46,11 +48,11 @@ function Demo() {
         </div>
       </div>
       <form onSubmit={handleSubmit}>
-      <label htmlFor="file-input" className={selectedFile ? "uploaded" : ""}>
+        <label htmlFor="file-input" style={{ backgroundColor: buttonColor, borderColor: "#CCCCCC", borderStyle: "dashed", borderWidth: "2px", outline: "none" }}>
           <i className="fas fa-cloud-upload-alt"></i> {filename || "Choose File"}
-      </label>
+        </label>
         <input id="file-input" type="file" name="file" onChange={handleFileInputChange} />
-        <button type="submit" disabled={!selectedFile}>Upload</button>
+        <button type="submit" style={{ backgroundColor: buttonColor }} disabled={!selectedFile}>Upload</button>
       </form>
       {fileData && <div>{fileData}</div>}
     </div>
