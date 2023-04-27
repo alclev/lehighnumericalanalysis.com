@@ -1,24 +1,58 @@
+import { useState } from 'react';
+import './demo.css';
 
 function Demo() {
-  const form = document.createElement('form');
-  form.id = 'fileUploadForm';
-  form.action = 'upload.php';
-  form.method = 'POST';
-  form.enctype = 'multipart/form-data';
-  
-  const fileInput = document.createElement('input');
-  fileInput.type = 'file';
-  fileInput.name = 'file';
-  
-  const submitButton = document.createElement('input');
-  submitButton.type = 'submit';
-  submitButton.value = 'Upload';
-  
-  form.appendChild(fileInput);
-  form.appendChild(submitButton);
-  
-  const container = document.getElementById('container');
-  container.appendChild(form);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [fileData, setFileData] = useState(null);
+
+  const handleFileInputChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const reader = new FileReader();
+    reader.readAsText(selectedFile);
+    reader.onload = (event) => {
+      setFileData(event.target.result);
+    };
+  };
+
+  return (
+    <div className="file-upload">
+      <div className="matrix-format-box">
+        <h2>Upload Your Matrix File</h2>
+        <div>
+          <p>In order for the program to read the file, it must be formatted in the following way:</p>
+          <ol style={{ textAlign: "left" }}>
+            <li>Number of matrices</li>
+            <li>Dimensions separated by commas</li>
+            <li>Elements separated by commas</li>
+          </ol>
+          <h3>Example</h3>
+          <div style={{ textAlign: "left" }}>
+            The following is the proper format for a file containing a single 2 x 2 matrix with 1 and 2 in the first row and 3 and 4 in the second row:
+            <br />
+            <pre>
+              1
+              <br />
+              2,2
+              <br />
+              1,2,3,4
+            </pre>
+          </div>
+        </div>
+      </div>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="file-input">
+          <i className="fas fa-cloud-upload-alt"></i> Choose File
+        </label>
+        <input id="file-input" type="file" name="file" onChange={handleFileInputChange} />
+        <button type="submit" disabled={!selectedFile}>Upload</button>
+      </form>
+      {fileData && <div>{fileData}</div>}
+    </div>
+  );
 }
 
 export default Demo;
