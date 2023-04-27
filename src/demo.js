@@ -4,9 +4,11 @@ import './demo.css';
 function Demo() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileData, setFileData] = useState(null);
+  const [filename, setFilename] = useState(null);
 
   const handleFileInputChange = (event) => {
     setSelectedFile(event.target.files[0]);
+    setFilename(event.target.files[0].name);
   };
 
   const handleSubmit = (event) => {
@@ -45,7 +47,7 @@ function Demo() {
       </div>
       <form onSubmit={handleSubmit}>
         <label htmlFor="file-input">
-          <i className="fas fa-cloud-upload-alt"></i> Choose File
+          <i className="fas fa-cloud-upload-alt"></i> {filename || "Choose File"}
         </label>
         <input id="file-input" type="file" name="file" onChange={handleFileInputChange} />
         <button type="submit" disabled={!selectedFile}>Upload</button>
