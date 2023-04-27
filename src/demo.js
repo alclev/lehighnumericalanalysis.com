@@ -46,9 +46,9 @@ function Demo() {
         </div>
       </div>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="file-input">
+      <label htmlFor="file-input" className={selectedFile ? "uploaded" : ""}>
           <i className="fas fa-cloud-upload-alt"></i> {filename || "Choose File"}
-        </label>
+      </label>
         <input id="file-input" type="file" name="file" onChange={handleFileInputChange} />
         <button type="submit" disabled={!selectedFile}>Upload</button>
       </form>

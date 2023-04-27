@@ -52,7 +52,9 @@
     display: block;
     margin-bottom: 10px;
     cursor: pointer;
-    border: 2px dashed grey;
+    background-color: #F2F2F2;
+    color: #333333;
+    border: 2px dashed #CCCCCC;
     border-radius: 5px;
     padding: 10px 20px;
     font-weight: bold;
@@ -62,8 +64,16 @@
   }
   
   label:hover {
-    background-color: #F2F2F2;
+    background-color: #0069D9;
+    color: #FFFFFF;
+    border-color: #0069D9;
   }
+  
+  label.uploaded {
+    background-color: #2ECC71;
+    color: #FFFFFF;
+    border-color: #2ECC71;
+  }  
   
   i {
     margin-right: 5px;
