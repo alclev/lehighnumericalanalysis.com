@@ -1,46 +1,24 @@
-import React, { useState, useEffect } from 'react';
 
 function Demo() {
-  const [worker, setWorker] = useState(null);
-  const [result, setResult] = useState(null);
-
-  useEffect(() => {
-    const worker = new Worker('./workers/add.js', { type: 'module' });
-    worker.onerror = (error) => {
-      console.error('Worker error:', error.error ? error.error.stack : error);
-    };
-    console.log('Worker created:', worker);
-    setWorker(worker);
-
-    worker.onmessage = (e) => {
-      console.log('Worker received message:', e);
-      setResult(e.data);
-    };
-
-    return () => {
-      worker.terminate();
-    };
-  }, []);
-
-  const add = (a, b) => {
-    if (!worker) {
-      return 'Loading...';
-    }
-
-    console.log('postMessage:', a, b);
-    worker.postMessage([a, b]);
-  };
-
-  useEffect(() => {
-    add(2, 3);
-  }, [worker]);
-
-  return (
-    <div className="App">
-      <h1>WebAssembly Example</h1>
-      <p>2 + 3 = {result === null ? 'Loading...' : result}</p>
-    </div>
-  );
+  const form = document.createElement('form');
+  form.id = 'fileUploadForm';
+  form.action = 'upload.php';
+  form.method = 'POST';
+  form.enctype = 'multipart/form-data';
+  
+  const fileInput = document.createElement('input');
+  fileInput.type = 'file';
+  fileInput.name = 'file';
+  
+  const submitButton = document.createElement('input');
+  submitButton.type = 'submit';
+  submitButton.value = 'Upload';
+  
+  form.appendChild(fileInput);
+  form.appendChild(submitButton);
+  
+  const container = document.getElementById('container');
+  container.appendChild(form);
 }
 
 export default Demo;
