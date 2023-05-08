@@ -27,9 +27,8 @@ function Demo() {
       <div className="matrix-format-box">
         <h2>Upload Your Matrix File</h2>
         <div>
-          <p>In order for the program to read the file, it must be formatted in the following way:</p>
+          <p>In order for the program to read the file, it must be formatted in the following way for ONE matrix:</p>
           <ol style={{ textAlign: "left" }}>
-            <li>Number of matrices</li>
             <li>Dimensions separated by commas</li>
             <li>Elements separated by commas</li>
           </ol>
@@ -38,7 +37,6 @@ function Demo() {
             The following is the proper format for a file containing a single 2 x 2 matrix with 1 and 2 in the first row and 3 and 4 in the second row:
             <br />
             <pre>
-              1
               <br />
               2,2
               <br />
