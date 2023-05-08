@@ -37,7 +37,6 @@ function Demo() {
             The following is the proper format for a file containing a single 2 x 2 matrix with 1 and 2 in the first row and 3 and 4 in the second row:
             <br />
             <pre>
-              <br />
               2,2
               <br />
               1,2,3,4
