@@ -1,6 +1,11 @@
 import { useState } from 'react';
-import { parseMatrix, drawMatrix } from './dataPackaging';
+import { parseMatrix, drawMatrix, buttonData } from './dataPackaging';
 import './demo.css';
+
+function handleClick(funcId) {
+  // Do something when the button is clicked
+  console.log('Button with function ID', funcId, 'was clicked!');
+}
 
 function Demo() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -27,6 +32,11 @@ function Demo() {
         const canvas = document.getElementById('matrix-canvas');
         const ctx = canvas.getContext('2d');
         drawMatrix(matrixData, canvas, ctx);
+        const buttons = buttonData.map((button) => (
+          <button key={button.func_id} onClick={() => handleClick(button.func_id)}>
+            {button.label}
+          </button>
+        ));
       }
     };
   };
@@ -68,6 +78,7 @@ function Demo() {
       )}
       {isValidMatrix && (
         <canvas id="matrix-canvas"></canvas>
+        <div>{buttons}</div>;
       )}
     </div>
   );

@@ -66,12 +66,12 @@ const buttonData = [
   { label: 'Inverse', func_id: 0x13 },
 // Direct methods for solving (0x20 - 0x2F)
   { label: 'Gauss Elimination', func_id: 0x20 },
-  { label: 'Blank', func_id: 0x21 },
+  { label: 'LU factorization', func_id: 0x21 },
   { label: 'Blank', func_id: 0x22 },
   { label: 'Blank', func_id: 0x23 },
 // Indirect methods for solving (0x30 - 0x3F)
   { label: 'Jacobi Method', func_id: 0x30 },
-  { label: 'Blank', func_id: 0x31 },
+  { label: 'Gauss Siedel', func_id: 0x31 },
   { label: 'Blank', func_id: 0x32 },
   { label: 'Blank', func_id: 0x33 },
 // Preconditioner (0x40 - 0x4F)
@@ -81,6 +81,13 @@ const buttonData = [
   { label: 'Blank', func_id: 0x43 },
 ];
 export default buttonData;
+
+// Define data format for json objects
+export const packet = {
+  'func_id': 0x00,
+  'args': '',
+  'matrix': '',
+}
 
 
 
