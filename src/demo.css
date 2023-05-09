@@ -79,27 +79,6 @@ pre {
   margin-bottom: 20px;
 }
 
-label[for="file-input"] {
-  display: block;
-  margin-bottom: 10px;
-  cursor: pointer;
-  border: 2px dashed grey;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: background-color 0.3s ease;
-  background-color: #CCCCCC;
-  border-color: #CCCCCC;
-  outline: none;
-  border-style: dashed; /* Add this line */
-}
-
-
-label[for="file-input"]:hover {
-  background-color: #F2F2F2;
-}
 
 i {
   margin-right: 5px;
