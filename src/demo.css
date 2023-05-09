@@ -1,34 +1,3 @@
-label[for="file-input"] {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #ffffff;
-  background-color: #666666;
-  border: 2px dashed #cccccc;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: border-color 0.3s ease;
-}
-
-label[for="file-input"]:hover {
-  border-color: #999999;
-}
-
-label[for="file-input"].file-selected {
-  background-color: #4caf50;
-  border-color: #4caf50;
-}
-
-label[for="file-input"].file-invalid {
-  border-color: #ff0000;
-}
-
 .file-upload {
   font-family: 'Helvetica Neue', sans-serif;
   font-size: 16px;
@@ -79,9 +48,34 @@ pre {
   margin-bottom: 20px;
 }
 
+label[for="file-input"] {
+  display: block;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border: 2px dashed grey;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  outline: none;
+  border-style: dashed;
+  background-color: transparent;
+}
 
-i {
-  margin-right: 5px;
+label[for="file-input"]:hover {
+  border-color: #999999;
+}
+
+label[for="file-input"].file-selected {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+  color: #FFFFFF;
+}
+
+label[for="file-input"].file-invalid {
+  border-color: #ff0000;
 }
 
 input[type="file"] {
@@ -98,7 +92,7 @@ button[type="submit"] {
   outline: none;
 }
 
-button[type="submit"]:hover {
+button[type="submit"]:hover:not(:disabled) {
   background-color: #4CAF50;
 }
 
@@ -107,13 +101,17 @@ button[type="submit"]:disabled {
   cursor: default;
 }
 
-label[for="file-input"].file-selected {
+label[for="file-input"].file-selected + button[type="submit"] {
   background-color: #4CAF50;
   border-color: #4CAF50;
-  color: #FFFFFF;
 }
 
-button[type="submit"].file-selected {
-  background-color: #4CAF50;
-  border-color: #4CAF50;
+label[for="file-input"].file-invalid + button[type="submit"] {
+  background-color: #FF0000;
+  border-color: #FF0000;
+}
+
+label[for="file-input"].file-selected + button[type="submit"]:disabled {
+  background-color: #CCCCCC;
+  cursor: default;
 }

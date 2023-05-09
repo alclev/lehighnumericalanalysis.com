@@ -26,9 +26,25 @@ export function drawMatrix(num_rows, num_cols, matrix_data) {
 
   // Returns true or false depending on whether matrix is correct format
 export function parseMatrix(matrix) {
-    
-  
-    return 
+    // Check dimensions
+    const dimensions = matrix.split('\n')[0];
+    const num_rows = parseInt(dimensions.split(',')[0]);
+    const num_cols = parseInt(dimensions.split(',')[1]);
+    if (isNaN(num_rows) || isNaN(num_cols)) {
+      return false;
+    }
+    // Check elements
+    const elements = matrix.split('\n')[1];
+    const elements_array = elements.split(',');
+    if (elements_array.length !== num_rows * num_cols) {
+      return false;
+    }
+    for (let i = 0; i < elements_array.length; i++) {
+      if (isNaN(parseInt(elements_array[i]))) {
+        return false;
+      }
+    }
+    return true;
   }
 
 // Define an array of button data, where each item contains a button label and a function ID
