@@ -1,3 +1,34 @@
+label[for="file-input"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #ffffff;
+  background-color: #666666;
+  border: 2px dashed #cccccc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+label[for="file-input"]:hover {
+  border-color: #999999;
+}
+
+label[for="file-input"].file-selected {
+  background-color: #4caf50;
+  border-color: #4caf50;
+}
+
+label[for="file-input"].file-invalid {
+  border-color: #ff0000;
+}
+
 .file-upload {
   font-family: 'Helvetica Neue', sans-serif;
   font-size: 16px;
@@ -48,7 +79,7 @@ pre {
   margin-bottom: 20px;
 }
 
-label.file-input {
+label[for="file-input"] {
   display: block;
   margin-bottom: 10px;
   cursor: pointer;
@@ -59,9 +90,14 @@ label.file-input {
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: background-color 0.3s ease;
+  background-color: #CCCCCC;
+  border-color: #CCCCCC;
+  outline: none;
+  border-style: dashed; /* Add this line */
 }
 
-label.file-input:hover {
+
+label[for="file-input"]:hover {
   background-color: #F2F2F2;
 }
 
@@ -73,31 +109,32 @@ input[type="file"] {
   display: none;
 }
 
-button.file-input {
-  background-color: grey;
+button[type="submit"] {
+  background-color: #CCCCCC;
   color: #FFFFFF;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
   cursor: pointer;
+  outline: none;
 }
 
-button.file-input:hover {
-  background-color: #0069D9;
+button[type="submit"]:hover {
+  background-color: #4CAF50;
 }
 
-button.file-input:disabled {
-  background-color: grey;
+button[type="submit"]:disabled {
+  background-color: #CCCCCC;
   cursor: default;
 }
 
-label.file-input.file-selected {
+label[for="file-input"].file-selected {
   background-color: #4CAF50;
   border-color: #4CAF50;
   color: #FFFFFF;
 }
 
-button.file-input.file-selected {
+button[type="submit"].file-selected {
   background-color: #4CAF50;
   border-color: #4CAF50;
 }

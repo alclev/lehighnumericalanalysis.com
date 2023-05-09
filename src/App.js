@@ -19,10 +19,10 @@ function App() {
                 <Link to="/demo">Demo</Link>
               </li>
               <li>
-                <Link to="/about">About</Link>
+                <Link to="/download">Download</Link>
               </li>
               <li>
-                <Link to="/download">Download</Link>
+                <Link to="/about">About</Link>
               </li>
             </ul>
           </nav>

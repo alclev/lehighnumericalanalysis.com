@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import './demo.css';
+import { parseMatrix } from './dataPackaging';
 
 function Demo() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileData, setFileData] = useState(null);
   const [filename, setFilename] = useState(null);
   const [buttonColor, setButtonColor] = useState("#CCCCCC");
+  const [isValidMatrix, setIsValidMatrix] = useState(true); // assuming it is initially valid
 
   const handleFileInputChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -18,7 +20,11 @@ function Demo() {
     const reader = new FileReader();
     reader.readAsText(selectedFile);
     reader.onload = (event) => {
-      setFileData(event.target.result);
+      const matrixData = event.target.result;
+      const isValidMatrix = parseMatrix(matrixData); 
+      setFileData(matrixData);
+      setButtonColor(isValidMatrix ? "#4CAF50" : "#CCCCCC");
+      setIsValidMatrix(isValidMatrix);
     };
   };
 
@@ -45,12 +51,17 @@ function Demo() {
         </div>
       </div>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="file-input" style={{ backgroundColor: buttonColor, borderColor: "#CCCCCC", borderStyle: "dashed", borderWidth: "2px", outline: "none" }}>
+        <label htmlFor="file-input" className={isValidMatrix ? "file-input" : "file-input file-invalid"} style={{ backgroundColor: buttonColor }}>
           <i className="fas fa-cloud-upload-alt"></i> {filename || "Choose File"}
         </label>
         <input id="file-input" type="file" name="file" onChange={handleFileInputChange} />
-        <button type="submit" style={{ backgroundColor: buttonColor }} disabled={!selectedFile}>Upload</button>
+        <button type="submit" className="file-input" style={{ backgroundColor: buttonColor }} disabled={!selectedFile}>Upload</button>
       </form>
+      {!isValidMatrix && (
+        <p style={{ color: "red", marginTop: "10px" }}>
+          The uploaded file does not contain a valid matrix. Please ensure that it is formatted correctly.
+        </p>
+      )}
       {fileData && <div>{fileData}</div>}
     </div>
   );
