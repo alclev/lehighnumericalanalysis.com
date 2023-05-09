@@ -39,7 +39,8 @@ export function parseMatrix(matrix) {
     if (isNaN(num_rows) || isNaN(num_cols)) {
       return false;
     }
-    if (num_rows > dim_LIMIT || num_cols > dim_LIMIT) {
+    console.log(dim_LIMIT);
+    if (num_rows > dim_LIMIT || num_cols > dim_LIMIT || num_rows < 1 || num_cols < 1) {
       return false;
     }
     // Check elements
