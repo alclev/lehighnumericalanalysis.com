@@ -1,10 +1,9 @@
 import { useState } from 'react';
+import { parseMatrix, drawMatrix } from './dataPackaging';
 import './demo.css';
-import { parseMatrix } from './dataPackaging';
 
 function Demo() {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [fileData, setFileData] = useState(null);
   const [filename, setFilename] = useState(null);
   const [buttonColor, setButtonColor] = useState("#CCCCCC");
   const [isValidMatrix, setIsValidMatrix] = useState(true); // assuming it is initially valid
@@ -21,12 +20,17 @@ function Demo() {
     reader.readAsText(selectedFile);
     reader.onload = (event) => {
       const matrixData = event.target.result;
-      const isValidMatrix = parseMatrix(matrixData); 
-      setFileData(matrixData);
-      setButtonColor(isValidMatrix ? "#4CAF50" : "#CCCCCC");
-      setIsValidMatrix(isValidMatrix);
+      const isValid = parseMatrix(matrixData);
+      setButtonColor(isValid ? "#4CAF50" : "#CCCCCC");
+      setIsValidMatrix(isValid);
+      if (isValid) {
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+        drawMatrix(matrixData, canvas, ctx);
+      }
     };
   };
+  
 
   return (
     <div className="file-upload">
@@ -59,10 +63,12 @@ function Demo() {
       </form>
       {!isValidMatrix && (
         <p style={{ color: "red", marginTop: "10px" }}>
-          The uploaded file does not contain a valid matrix. Please ensure that it is formatted correctly.
+          The uploaded file does not contain a valid matrix. Please ensure that it is formatted correctly and is less than or equal to 25x25.
         </p>
       )}
-      {fileData && <div>{fileData}</div>}
+      {isValidMatrix && (
+        <canvas id="matrix-canvas"></canvas>
+      )}
     </div>
   );
 }

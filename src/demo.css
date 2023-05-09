@@ -115,3 +115,11 @@ label[for="file-input"].file-selected + button[type="submit"]:disabled {
   background-color: #CCCCCC;
   cursor: default;
 }
+
+.matrix-canvas {
+  display: block;
+  margin: 50px auto 30px;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}

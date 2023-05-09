@@ -1,28 +1,34 @@
-export function drawMatrix(num_rows, num_cols, matrix_data) {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-  
-    // Set the size of the canvas to fit the matrix
-    canvas.width = num_cols * 50;
-    canvas.height = num_rows * 50;
-  
-    // Iterate through the rows and columns of the matrix
-    for (let i = 0; i < num_rows; i++) {
-      for (let j = 0; j < num_cols; j++) {
-        // Draw a cell with a border
-        ctx.beginPath();
-        ctx.rect(j * 50, i * 50, 50, 50);
-        ctx.stroke();
-  
-        // Display the element of the matrix in the cell
-        ctx.font = '24px Arial';
-        ctx.fillStyle = 'grey';
-        ctx.textAlign = 'center';
-        ctx.fillText(matrix_data[i * num_cols + j], j * 50 + 25, i * 50 + 35);
-      }
+export var dim_LIMIT = 25;
+
+export function drawMatrix(matrixData, canvas, ctx) {
+  const dimensions = matrixData.split('\n')[0];
+  const num_rows = parseInt(dimensions.split(',')[0]);
+  const num_cols = parseInt(dimensions.split(',')[1]);
+  const elements = matrixData.split('\n')[1];
+  const data = elements.split(',');
+
+  canvas.width = num_rows * 50;
+  canvas.height = num_cols * 50;
+
+  // Iterate through the rows and columns of the matrix
+  for (let i = 0; i < num_rows; i++) {
+    for (let j = 0; j < num_cols; j++) {
+      // Draw a cell with a border
+      ctx.beginPath();
+      ctx.rect(j * 50, i * 50, 50, 50);
+      ctx.stroke();
+
+      // Display the element of the matrix in the cell
+      ctx.font = '24px Arial';
+      ctx.fillStyle = 'grey';
+      ctx.textAlign = 'center';
+      ctx.fillText(data[i * num_cols + j], j * 50 + 25, i * 50 + 35);
     }
-    return canvas;
   }
+}
+
+
+
 
   // Returns true or false depending on whether matrix is correct format
 export function parseMatrix(matrix) {
@@ -31,6 +37,9 @@ export function parseMatrix(matrix) {
     const num_rows = parseInt(dimensions.split(',')[0]);
     const num_cols = parseInt(dimensions.split(',')[1]);
     if (isNaN(num_rows) || isNaN(num_cols)) {
+      return false;
+    }
+    if (num_rows > dim_LIMIT || num_cols > dim_LIMIT) {
       return false;
     }
     // Check elements
@@ -69,9 +78,6 @@ const buttonData = [
   { label: 'Blank', func_id: 0x41 },
   { label: 'Blank', func_id: 0x42 },
   { label: 'Blank', func_id: 0x43 },
-  
-
-  { label: 'Gauss Elimination', func_id: 3 },
 ];
 export default buttonData;
 
