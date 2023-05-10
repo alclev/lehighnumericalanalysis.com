@@ -123,3 +123,27 @@ label[for="file-input"].file-selected + button[type="submit"]:disabled {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
 }
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.button-container button {
+  margin: 5px;
+  font-size: 18px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.button-container button:hover {
+  background-color: #2E8B57;
+}

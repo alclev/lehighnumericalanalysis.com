@@ -58,7 +58,7 @@ export function parseMatrix(matrix) {
   }
 
 // Define an array of button data, where each item contains a button label and a function ID
-const buttonData = [
+export const buttonData = [
 // Basic opertions (0x10 - 0x1F)
   { label: 'Add', func_id: 0x10 },
   { label: 'Multiply', func_id: 0x11 },
@@ -80,7 +80,6 @@ const buttonData = [
   { label: 'Blank', func_id: 0x42 },
   { label: 'Blank', func_id: 0x43 },
 ];
-export default buttonData;
 
 // Define data format for json objects
 export const packet = {

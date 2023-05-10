@@ -12,11 +12,14 @@ function Demo() {
   const [filename, setFilename] = useState(null);
   const [buttonColor, setButtonColor] = useState("#CCCCCC");
   const [isValidMatrix, setIsValidMatrix] = useState(true); // assuming it is initially valid
+  const [buttons, setButtons] = useState([]);
+
 
   const handleFileInputChange = (event) => {
     setSelectedFile(event.target.files[0]);
     setFilename(event.target.files[0].name);
     setButtonColor("#4CAF50");
+    setButtons([]);
   };
 
   const handleSubmit = (event) => {
@@ -28,6 +31,7 @@ function Demo() {
       const isValid = parseMatrix(matrixData);
       setButtonColor(isValid ? "#4CAF50" : "#CCCCCC");
       setIsValidMatrix(isValid);
+
       if (isValid) {
         const canvas = document.getElementById('matrix-canvas');
         const ctx = canvas.getContext('2d');
@@ -37,6 +41,7 @@ function Demo() {
             {button.label}
           </button>
         ));
+        setButtons(buttons);
       }
     };
   };
@@ -77,8 +82,10 @@ function Demo() {
         </p>
       )}
       {isValidMatrix && (
-        <canvas id="matrix-canvas"></canvas>
-        <div>{buttons}</div>;
+        <div>
+          <canvas id="matrix-canvas"></canvas>
+          <div className="button-container">{buttons}</div>
+        </div>
       )}
     </div>
   );
