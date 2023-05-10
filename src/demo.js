@@ -2,46 +2,6 @@ import { useState } from 'react';
 import { parseMatrix, drawMatrix, buttonData } from './dataPackaging';
 import './demo.css';
 
-function add_handler(){
-  console.log("add");
-}
-function mult_handler(){
-  console.log("mult");
-}
-function transpose_handler(){
-  console.log("transpose");
-}
-function inverse_handler(){
-  console.log("inverse");
-}
-function gauss_handler(){
-  console.log("gauss");
-}
-function luFact_handler(){
-  return 0;
-}
-function jacobi_handler(){
-  return 0;
-}
-function gauss_siedel_handler(){
-  return 0;
-}
-
-const func_map = {
-  0x10: add_handler,
-  0x11: mult_handler,
-  0x12: transpose_handler,
-  0x13: inverse_handler,
-  0x20: gauss_handler,
-  0x21: luFact_handler,
-  0x30: jacobi_handler,
-  0x31: gauss_siedel_handler,
-}
-
-function handleClick(funcId) {
-  const func = func_map[funcId];
-  func();
-}
 
 
 function Demo() {
@@ -51,6 +11,112 @@ function Demo() {
   const [isValidMatrix, setIsValidMatrix] = useState(true); // assuming it is initially valid
   const [buttons, setButtons] = useState([]);
 
+  const [add_called, setAdd_called] = useState(false);
+  const [mult_called, setMult_called] = useState(false);
+  const [transpose_called, setTranspose_called] = useState(false);
+  const [inverse_called, setInverse_called] = useState(false);
+  const [gauss_called, setGauss_called] = useState(false);
+  const [luFact_called, setLuFact_called] = useState(false);
+  const [jacobi_called, setJacobi_called] = useState(false);
+  const [gauss_siedel_called, setGauss_siedel_called] = useState(false);
+
+  function add_handler(){
+    setAdd_called(true);
+    setMult_called(false);
+    setTranspose_called(false);
+    setInverse_called(false);
+    setGauss_called(false);
+    setLuFact_called(false);
+    setJacobi_called(false);
+    setGauss_siedel_called(false);
+
+  }
+  function mult_handler(){
+    setAdd_called(false);
+    setMult_called(true);
+    setTranspose_called(false);
+    setInverse_called(false);
+    setGauss_called(false);
+    setLuFact_called(false);
+    setJacobi_called(false);
+    setGauss_siedel_called(false);
+  }
+  function transpose_handler(){
+    setAdd_called(false);
+    setMult_called(false);
+    setTranspose_called(true);
+    setInverse_called(false);
+    setGauss_called(false);
+    setLuFact_called(false);
+    setJacobi_called(false);
+    setGauss_siedel_called(false);
+  }
+  function inverse_handler(){
+    setAdd_called(false);
+    setMult_called(false);
+    setTranspose_called(false);
+    setInverse_called(true);
+    setGauss_called(false);
+    setLuFact_called(false);
+    setJacobi_called(false);
+    setGauss_siedel_called(false);
+  }
+  function gauss_handler(){
+    setAdd_called(false);
+    setMult_called(false);
+    setTranspose_called(false);
+    setInverse_called(false);
+    setGauss_called(true);
+    setLuFact_called(false);
+    setJacobi_called(false);
+    setGauss_siedel_called(false);
+  }
+  function luFact_handler(){
+    setAdd_called(false);
+    setMult_called(false);
+    setTranspose_called(false);
+    setInverse_called(false);
+    setGauss_called(false);
+    setLuFact_called(true);
+    setJacobi_called(false);
+    setGauss_siedel_called(false);
+  }
+  function jacobi_handler(){
+    setAdd_called(false);
+    setMult_called(false);
+    setTranspose_called(false);
+    setInverse_called(false);
+    setGauss_called(false);
+    setLuFact_called(false);
+    setJacobi_called(true);
+    setGauss_siedel_called(false);
+  }
+  function gauss_siedel_handler(){
+    setAdd_called(false);
+    setMult_called(false);
+    setTranspose_called(false);
+    setInverse_called(false);
+    setGauss_called(false);
+    setLuFact_called(false);
+    setJacobi_called(false);
+    setGauss_siedel_called(true);
+  }
+
+  const func_map = {
+    0x10: add_handler,
+    0x11: mult_handler,
+    0x12: transpose_handler,
+    0x13: inverse_handler,
+    0x20: gauss_handler,
+    0x21: luFact_handler,
+    0x30: jacobi_handler,
+    0x31: gauss_siedel_handler,
+  }
+
+  function handleClick(funcId) {
+    const func = func_map[funcId];
+    func();
+  }
 
   const handleFileInputChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -122,6 +188,62 @@ function Demo() {
         <div>
           <canvas id="matrix-canvas"></canvas>
           <div className="button-container">{buttons}</div>
+          {add_called && (
+            <div>
+              <label for="add">Upload a matrix to add:</label>
+              <form onSubmit={handleSubmit}>
+                <label htmlFor="file-input" className={isValidMatrix ? "add-input" : "add-input file-invalid"} style={{ backgroundColor: buttonColor }}>
+                  <i className="fas fa-cloud-upload-alt"></i> {filename || "Choose File"}
+                </label>
+                <input id="add-input" type="file" name="file" onChange={handleFileInputChange} />
+              </form>
+              <button type="submit">Compute</button>
+            </div>
+          )}
+          {mult_called && (
+            <div>
+              <label for="mult">Multiply a matrix by a scalar:</label>
+              <p>Enter a scalar</p>
+              <input className="mult-input"></input>
+              <button type="submit">Compute</button>
+            </div>
+          )}
+          {transpose_called && (
+            <div>
+              <p>Transpose the matrix.</p>
+              <button type="submit">Compute</button>
+            </div>
+          )}
+          {inverse_called && (
+            <div>
+              <p>Inverse the matrix.</p>
+              <button type="submit">Compute</button>
+            </div>
+          )}
+          {gauss_called && (
+            <div>
+              <p>Solve the system using Gauss elimination</p>
+              <button type="submit">Compute</button>
+            </div>
+          )}
+          {luFact_called && (
+            <div>
+              <p>Decompose the square matrix with LU factorization</p>
+              <button type="submit">Compute</button>
+           </div>
+          )}
+          {jacobi_called && (
+            <div>
+              <p>Solve the system using the Jacobi method</p>
+              <button type="submit">Compute</button>
+            </div>
+          )}
+          {gauss_siedel_called && (
+            <div>
+              <p>Solve the system using Gauss Siedel</p>
+              <button type="submit">Compute</button>
+            </div>
+          )}
         </div>
       )}
     </div>
