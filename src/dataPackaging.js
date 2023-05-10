@@ -67,18 +67,18 @@ export const buttonData = [
 // Direct methods for solving (0x20 - 0x2F)
   { label: 'Gauss Elimination', func_id: 0x20 },
   { label: 'LU factorization', func_id: 0x21 },
-  { label: 'Blank', func_id: 0x22 },
-  { label: 'Blank', func_id: 0x23 },
+  // { label: 'TBD', func_id: 0x22 },
+  // { label: 'TBD', func_id: 0x23 },
 // Indirect methods for solving (0x30 - 0x3F)
   { label: 'Jacobi Method', func_id: 0x30 },
   { label: 'Gauss Siedel', func_id: 0x31 },
-  { label: 'Blank', func_id: 0x32 },
-  { label: 'Blank', func_id: 0x33 },
+  // { label: 'TBD', func_id: 0x32 },
+  // { label: 'TBD', func_id: 0x33 },
 // Preconditioner (0x40 - 0x4F)
-  { label: 'Blank', func_id: 0x40 },
-  { label: 'Blank', func_id: 0x41 },
-  { label: 'Blank', func_id: 0x42 },
-  { label: 'Blank', func_id: 0x43 },
+  // { label: 'TBD', func_id: 0x40 },
+  // { label: 'TBD', func_id: 0x41 },
+  // { label: 'TBD', func_id: 0x42 },
+  // { label: 'TBD', func_id: 0x43 },
 ];
 
 // Define data format for json objects

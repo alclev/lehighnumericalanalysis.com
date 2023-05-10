@@ -2,10 +2,47 @@ import { useState } from 'react';
 import { parseMatrix, drawMatrix, buttonData } from './dataPackaging';
 import './demo.css';
 
-function handleClick(funcId) {
-  // Do something when the button is clicked
-  console.log('Button with function ID', funcId, 'was clicked!');
+function add_handler(){
+  console.log("add");
 }
+function mult_handler(){
+  console.log("mult");
+}
+function transpose_handler(){
+  console.log("transpose");
+}
+function inverse_handler(){
+  console.log("inverse");
+}
+function gauss_handler(){
+  console.log("gauss");
+}
+function luFact_handler(){
+  return 0;
+}
+function jacobi_handler(){
+  return 0;
+}
+function gauss_siedel_handler(){
+  return 0;
+}
+
+const func_map = {
+  0x10: add_handler,
+  0x11: mult_handler,
+  0x12: transpose_handler,
+  0x13: inverse_handler,
+  0x20: gauss_handler,
+  0x21: luFact_handler,
+  0x30: jacobi_handler,
+  0x31: gauss_siedel_handler,
+}
+
+function handleClick(funcId) {
+  const func = func_map[funcId];
+  func();
+}
+
 
 function Demo() {
   const [selectedFile, setSelectedFile] = useState(null);
