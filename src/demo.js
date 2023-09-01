@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { parseMatrix, drawMatrix, buttonData } from './dataPackaging';
 import './demo.css';
+import handleMultiply from './api.js';
+//import './api.js'
+
 
 
 
@@ -205,7 +208,7 @@ function Demo() {
               <label for="mult">Multiply a matrix by a scalar:</label>
               <p>Enter a scalar</p>
               <input className="mult-input"></input>
-              <button type="submit">Compute</button>
+              <button type="submit" onClick={handleMultiply}>Compute</button>
             </div>
           )}
           {transpose_called && (

@@ -14,3 +14,7 @@
 1. 'ssh 159.203.157.193 -l root'
 Password: augustusbuck
 
+# Pi
+username: ubuntu
+password: Capstone23
+
