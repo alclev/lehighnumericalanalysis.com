@@ -1,1 +1,46 @@
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
 node_modules/
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# dotenv environment variables file
+.env
+
+# Editor files
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+
+# Build files
+/build
+/dist
+
+# Miscellaneous
+*.tmp
+*.swp
+*.bak
+*.cache
+*.log
+*.db
+*.sqlite
+*.sqlite3
+*.csv
+
+# Ignore coverage directory
+coverage/
