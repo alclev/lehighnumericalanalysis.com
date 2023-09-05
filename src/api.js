@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const handleMultiply = function() {
+export const handleMultiply = function(selectedFile) {
     const scalarInput = document.getElementById('mult-input');
     const scalar = parseFloat(scalarInput.value); 
   
@@ -24,5 +24,3 @@ export const handleMultiply = function() {
         console.error('Error:', error);
       });
 }
-
-  export default api;
