@@ -208,7 +208,7 @@ function Demo() {
               <label for="mult">Multiply a matrix by a scalar:</label>
               <p>Enter a scalar</p>
               <input className="mult-input"></input>
-              <button type="submit" onClick={handleMultiply(selectedFile)}>Compute</button>
+              <button type="submit" onClick={() => handleMultiply(selectedFile)}>Compute</button>
             </div>
           )}
           {transpose_called && (
