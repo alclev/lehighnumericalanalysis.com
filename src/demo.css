@@ -167,3 +167,6 @@ label[for="file-input"].file-selected + button[type="submit"]:disabled {
   box-shadow: 0 0 5px #4CAF50;
 }
 
+.vertical {
+  place-items: center;
+}

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { parseMatrix, drawMatrix, buttonData } from './dataPackaging';
 import './demo.css';
-import {handleMultiply} from './api';
+import {handleAddition, handleMultiply, handleTranspose, handleInverse} from './api';
 //import './api.js'
 
 
@@ -9,13 +9,18 @@ import {handleMultiply} from './api';
 
 function Demo() {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFileTwo, setSelectedFileTwo] = useState(null);
   const [filename, setFilename] = useState(null);
+  const [fileNameTwo, setfileNameTwo] = useState(null);
   const [buttonColor, setButtonColor] = useState("#CCCCCC");
   const [isValidMatrix, setIsValidMatrix] = useState(true); // assuming it is initially valid
+  const [isValidMatrixTwo, setIsValidMatrixTwo] = useState(true); // assuming it is initially valid
   const [buttons, setButtons] = useState([]);
 
   const [add_called, setAdd_called] = useState(false);
   const [mult_called, setMult_called] = useState(false);
+  //for mult
+  const [scalar, setScalar] = useState('');
   const [transpose_called, setTranspose_called] = useState(false);
   const [inverse_called, setInverse_called] = useState(false);
   const [gauss_called, setGauss_called] = useState(false);
@@ -151,6 +156,37 @@ function Demo() {
       }
     };
   };
+
+  const handleFileInputChangeTwo = (event) => {
+    setSelectedFileTwo(event.target.files[0]);
+    setfileNameTwo(event.target.files[0].name);
+    setButtonColor("#4CAF50");
+    setButtons([]);
+  };
+
+  const handleSubmitSecondMatrix = (event) => {
+    event.preventDefault();
+    const reader = new FileReader();
+    reader.readAsText(selectedFile);
+    reader.onload = (event) => {
+      const matrixData = event.target.result;
+      const isValid = parseMatrix(matrixData);
+      setButtonColor(isValid ? "#4CAF50" : "#CCCCCC");
+      setIsValidMatrixTwo(isValid);
+
+      if (isValid) {
+        const canvas = document.getElementById('matrix-canvas-two');
+        const ctx = canvas.getContext('2d');
+        drawMatrix(matrixData, canvas, ctx);
+        const buttons = buttonData.map((button) => (
+          <button key={button.func_id} onClick={() => handleClick(button.func_id)}>
+            {button.label}
+          </button>
+        ));
+        setButtons(buttons);
+      }
+    };
+  };
   
 
   return (
@@ -194,33 +230,50 @@ function Demo() {
           {add_called && (
             <div>
               <label for="add">Upload a matrix to add:</label>
-              <form onSubmit={handleSubmit}>
-                <label htmlFor="file-input" className={isValidMatrix ? "add-input" : "add-input file-invalid"} style={{ backgroundColor: buttonColor }}>
-                  <i className="fas fa-cloud-upload-alt"></i> {filename || "Choose File"}
+              <form onSubmit={handleSubmitSecondMatrix}>
+                <label htmlFor="file-input" className={isValidMatrixTwo ? "add-input" : "add-input file-invalid"} style={{ backgroundColor: buttonColor }}>
+                  <i className="fas fa-cloud-upload-alt"></i> {fileNameTwo || "Choose File"}
                 </label>
-                <input id="add-input" type="file" name="file" onChange={handleFileInputChange} />
+                <input id="add-input" type="file" name="file" onChange={handleFileInputChangeTwo} />
+                <button type="submit" className="file-input" style={{ backgroundColor: buttonColor }} disabled={selectedFileTwo}>Upload</button>
               </form>
-              <button type="submit">Compute</button>
+              <div className='vertical'>
+                <canvas id="matrix-canvas-two"></canvas>
+                <button type="submit" onClick={() => handleAddition(selectedFile, selectedFileTwo)}>
+                  Compute
+                </button>
+              </div>
             </div>
           )}
           {mult_called && (
             <div>
-              <label for="mult">Multiply a matrix by a scalar:</label>
+              <label htmlFor="mult">Multiply a matrix by a scalar:</label>
               <p>Enter a scalar</p>
-              <input className="mult-input"></input>
-              <button type="submit" onClick={() => handleMultiply(selectedFile)}>Compute</button>
+              <input
+                className="mult-input"
+                type="number"
+                value={scalar}
+                onChange={(e) => setScalar(e.target.value)}
+              />
+              <button type="submit" onClick={() => handleMultiply(selectedFile, scalar)}>
+                Compute
+              </button>
             </div>
           )}
           {transpose_called && (
             <div>
               <p>Transpose the matrix.</p>
-              <button type="submit">Compute</button>
+              <button type="submit" onClick={() => handleTranspose(selectedFile)}>
+                Compute
+              </button>
             </div>
           )}
           {inverse_called && (
             <div>
               <p>Inverse the matrix.</p>
-              <button type="submit">Compute</button>
+              <button type="submit" onClick={() => handleInverse(selectedFile)}>
+                Compute
+              </button>
             </div>
           )}
           {gauss_called && (
