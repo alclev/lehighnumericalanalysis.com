@@ -5,6 +5,7 @@ const routeToHit = 'api';
 export const handleAddition = function (selectedFile, selectedFile2) {
   //data to send to backend
   const data = {
+    operation: "0x4",
     matrixData: selectedFile,
     secondMatrixData: selectedFile2,
   };
