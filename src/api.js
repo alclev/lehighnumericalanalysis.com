@@ -5,7 +5,7 @@ const routeToHit = 'api';
 export const handleAddition = function (selectedFile, selectedFile2) {
   //data to send to backend
   const data = {
-    operation: "0x4",
+    operation: "0x10",
     args: 2,
     matrixData: selectedFile,
     secondMatrixData: selectedFile2,
@@ -24,6 +24,8 @@ export const handleAddition = function (selectedFile, selectedFile2) {
 export const handleMultiply = function (selectedFile, scalar) {
   //data to send to backend
   const data = {
+    operation: "0x11",
+    args: 2,
     matrixData: selectedFile,
     scalar: parseFloat(scalar),
   };
@@ -40,6 +42,8 @@ export const handleMultiply = function (selectedFile, scalar) {
 export const handleTranspose = function (selectedFile) {
   //data to send to backend
   const data = {
+    operation: "0x12",
+    args: 1,
     matrixData: selectedFile,
   };
   // Make a POST to API
@@ -55,6 +59,8 @@ export const handleTranspose = function (selectedFile) {
 export const handleInverse = function (selectedFile) {
   //data to send to backend
   const data = {
+    operation: "0x13",
+    args: 1,
     matrixData: selectedFile,
   };
   // Make a POST to API
