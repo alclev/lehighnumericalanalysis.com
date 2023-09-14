@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const routeToHit = 'api';
+
 export const handleAddition = function (selectedFile, selectedFile2) {
   //data to send to backend
   const data = {
