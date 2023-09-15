@@ -37,6 +37,7 @@ function Demo() {
     setLuFact_called(false);
     setJacobi_called(false);
     setGauss_siedel_called(false);
+    setGotResult(false;)
   }
   //when we get an add, set all the other operations to false
   function add_handler(){
@@ -86,6 +87,12 @@ function Demo() {
   function handleClick(funcId) {
     const func = func_map[funcId];
     func();
+  }
+  //this function is used within api to send back the result to the demo page
+  export const handleDisplayResonse = function (matrixData){
+    set_all_operations_false()
+    setGotResult(true);
+    setSelectedFile = matrixData;
   }
   //when a file is inputed update some states
   const handleFileInputChange = (event) => {

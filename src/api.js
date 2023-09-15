@@ -1,6 +1,8 @@
 import axios from 'axios';
+import {handleDisplayResonse} from './demo';
 
-const routeToHit = 'api';
+
+const routeToHit = '127.0.0.1';
 
 export const handleAddition = function (selectedFile, selectedFile2) {
   //data to send to backend
@@ -32,7 +34,7 @@ export const handleMultiply = function (selectedFile, scalar) {
   // Make a POST to API
   axios.post(routeToHit, data)
     .then((response) => {
-      console.log(response.data);
+      handleDisplayResonse(response.data.matrixData);
     })
     .catch((error) => {
       console.error('Error:', error);
