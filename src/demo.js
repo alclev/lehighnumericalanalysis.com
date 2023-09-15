@@ -8,6 +8,7 @@ import {handleAddition, handleMultiply, handleTranspose, handleInverse} from './
 
 
 function Demo() {
+  //these constants set the state for different parts of the frontend
   const [selectedFile, setSelectedFile] = useState(null);
   const [selectedFileTwo, setSelectedFileTwo] = useState(null);
   const [gotResult, setGotResult] = useState(null);
@@ -30,8 +31,10 @@ function Demo() {
   const [jacobi_called, setJacobi_called] = useState(false);
   const [gauss_siedel_called, setGauss_siedel_called] = useState(false);
 
-  function add_handler(){
-    setAdd_called(true);
+  //set all of the operations to false
+  //we have to set all of them to false because another one might be active, resulting in two showing up
+  function set_all_operations_false(){
+    setAdd_called(false);
     setMult_called(false);
     setTranspose_called(false);
     setInverse_called(false);
@@ -39,76 +42,39 @@ function Demo() {
     setLuFact_called(false);
     setJacobi_called(false);
     setGauss_siedel_called(false);
+  }
 
+  //when we get an add, set all the other operations to false
+  function add_handler(){
+    set_all_operations_false()
+    setAdd_called(true);
   }
   function mult_handler(){
-    setAdd_called(false);
+    set_all_operations_false()
     setMult_called(true);
-    setTranspose_called(false);
-    setInverse_called(false);
-    setGauss_called(false);
-    setLuFact_called(false);
-    setJacobi_called(false);
-    setGauss_siedel_called(false);
   }
   function transpose_handler(){
-    setAdd_called(false);
-    setMult_called(false);
+    set_all_operations_false()
     setTranspose_called(true);
-    setInverse_called(false);
-    setGauss_called(false);
-    setLuFact_called(false);
-    setJacobi_called(false);
-    setGauss_siedel_called(false);
   }
   function inverse_handler(){
-    setAdd_called(false);
-    setMult_called(false);
-    setTranspose_called(false);
+    set_all_operations_false()
     setInverse_called(true);
-    setGauss_called(false);
-    setLuFact_called(false);
-    setJacobi_called(false);
-    setGauss_siedel_called(false);
   }
   function gauss_handler(){
-    setAdd_called(false);
-    setMult_called(false);
-    setTranspose_called(false);
-    setInverse_called(false);
+    set_all_operations_false()
     setGauss_called(true);
-    setLuFact_called(false);
-    setJacobi_called(false);
-    setGauss_siedel_called(false);
   }
   function luFact_handler(){
-    setAdd_called(false);
-    setMult_called(false);
-    setTranspose_called(false);
-    setInverse_called(false);
-    setGauss_called(false);
+    set_all_operations_false()
     setLuFact_called(true);
-    setJacobi_called(false);
-    setGauss_siedel_called(false);
   }
   function jacobi_handler(){
-    setAdd_called(false);
-    setMult_called(false);
-    setTranspose_called(false);
-    setInverse_called(false);
-    setGauss_called(false);
-    setLuFact_called(false);
+    set_all_operations_false()
     setJacobi_called(true);
-    setGauss_siedel_called(false);
   }
   function gauss_siedel_handler(){
-    setAdd_called(false);
-    setMult_called(false);
-    setTranspose_called(false);
-    setInverse_called(false);
-    setGauss_called(false);
-    setLuFact_called(false);
-    setJacobi_called(false);
+    set_all_operations_false()
     setGauss_siedel_called(true);
   }
 
