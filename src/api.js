@@ -12,16 +12,14 @@ export const handleAddition = function (selectedFile, selectedFile2) {
     matrixData: selectedFile,
     secondMatrixData: selectedFile2,
   };
-  console.log("clev");
-  console.log(data);
   // Make a POST to API
-  // axios.post(routeToHit, data)
-  //   .then((response) => {
-  //     console.log(response.data);
-  //   })
-  //   .catch((error) => {
-  //     console.error('Error:', error);
-  //   });
+  axios.post(routeToHit, data)
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
 };
 
 //the input to this function should validate that the inputs are valid numbers
