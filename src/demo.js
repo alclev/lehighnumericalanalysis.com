@@ -229,7 +229,7 @@ function Demo() {
                 value={scalar}
                 onChange={(e) => setScalar(e.target.value)}
               />
-              <button type="submit" onClick={() => handleMultiply(selectedFile, scalar)}>
+              <button type="submit" onClick={() => handleMultiply(matrixData, scalar)}>
                 Compute
               </button>
             </div>
@@ -237,7 +237,7 @@ function Demo() {
           {transpose_called && (
             <div>
               <p>Transpose the matrix.</p>
-              <button type="submit" onClick={() => handleTranspose(selectedFile)}>
+              <button type="submit" onClick={() => handleTranspose(matrixData)}>
                 Compute
               </button>
             </div>
@@ -245,7 +245,7 @@ function Demo() {
           {inverse_called && (
             <div>
               <p>Inverse the matrix.</p>
-              <button type="submit" onClick={() => handleInverse(selectedFile)}>
+              <button type="submit" onClick={() => handleInverse(matrixData)}>
                 Compute
               </button>
             </div>
