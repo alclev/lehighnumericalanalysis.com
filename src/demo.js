@@ -10,9 +10,11 @@ import {handleAddition, handleMultiply, handleTranspose, handleInverse} from './
 function Demo() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [selectedFileTwo, setSelectedFileTwo] = useState(null);
+  const [gotResult, setGotResult] = useState(null);
   const [filename, setFilename] = useState(null);
   const [fileNameTwo, setfileNameTwo] = useState(null);
   const [buttonColor, setButtonColor] = useState("#CCCCCC");
+  const [buttonColorSecondFileUpload, setButtonColorSecondFileUpload] = useState("#CCCCCC");
   const [isValidMatrix, setIsValidMatrix] = useState(true); // assuming it is initially valid
   const [isValidMatrixTwo, setIsValidMatrixTwo] = useState(true); // assuming it is initially valid
   const [buttons, setButtons] = useState([]);
@@ -160,7 +162,7 @@ function Demo() {
   const handleFileInputChangeTwo = (event) => {
     setSelectedFileTwo(event.target.files[0]);
     setfileNameTwo(event.target.files[0].name);
-    setButtonColor("#4CAF50");
+    setButtonColorSecondFileUpload("#4CAF50");
     setButtons([]);
   };
 
@@ -171,19 +173,19 @@ function Demo() {
     reader.onload = (event) => {
       const matrixData = event.target.result;
       const isValid = parseMatrix(matrixData);
-      setButtonColor(isValid ? "#4CAF50" : "#CCCCCC");
+      setButtonColorSecondFileUpload(isValid ? "#4CAF50" : "#CCCCCC");
       setIsValidMatrixTwo(isValid);
 
       if (isValid) {
         const canvas = document.getElementById('matrix-canvas-two');
         const ctx = canvas.getContext('2d');
         drawMatrix(matrixData, canvas, ctx);
-        const buttons = buttonData.map((button) => (
-          <button key={button.func_id} onClick={() => handleClick(button.func_id)}>
-            {button.label}
-          </button>
-        ));
-        setButtons(buttons);
+        // const buttons = buttonData.map((button) => (
+        //   <button key={button.func_id} onClick={() => handleClick(button.func_id)}>
+        //     {button.label}
+        //   </button>
+        // ));
+        // setButtons(buttons);
       }
     };
   };
@@ -231,14 +233,14 @@ function Demo() {
             <div>
               <label for="add">Upload a matrix to add:</label>
               <form onSubmit={handleSubmitSecondMatrix}>
-                <label htmlFor="file-input" className={isValidMatrixTwo ? "add-input" : "add-input file-invalid"} style={{ backgroundColor: buttonColor }}>
+                <label htmlFor="file-input" className={isValidMatrixTwo ? "file-input" : "file-input file-invalid"} style={{ backgroundColor: buttonColorSecondFileUpload }}>
                   <i className="fas fa-cloud-upload-alt"></i> {fileNameTwo || "Choose File"}
                 </label>
-                <input id="add-input" type="file" name="file" onChange={handleFileInputChangeTwo} />
-                <button type="submit" className="file-input" style={{ backgroundColor: buttonColor }} disabled={selectedFileTwo}>Upload</button>
+                <input id="file-input" type="file" name="file" onChange={handleFileInputChangeTwo} />
+                <button type="submit" className="file-input" style={{ backgroundColor: buttonColorSecondFileUpload }} disabled={selectedFileTwo}>Upload</button>
               </form>
-              <div className='vertical'>
-                <canvas id="matrix-canvas-two"></canvas>
+              <canvas id="matrix-canvas-two"></canvas>
+              <div>
                 <button type="submit" onClick={() => handleAddition(selectedFile, selectedFileTwo)}>
                   Compute
                 </button>
