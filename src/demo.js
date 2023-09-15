@@ -2,13 +2,6 @@ import { useState } from 'react';
 import { parseMatrix, drawMatrix, buttonData } from './dataPackaging';
 import './demo.css';
 import {handleAddition, handleMultiply, handleTranspose, handleInverse} from './api';
-
-  //this function is used within api to send back the result to the demo page
-  export const handleDisplayResonse = function (matrixData){
-    // set_all_operations_false()
-    // setGotResult(true);
-    // setSelectedFile = matrixData;
-  };
 //import './api.js'
 
 function Demo() {
@@ -161,7 +154,6 @@ function Demo() {
       }
     };
   };
-  
 
   return (
     <div className="file-upload">
