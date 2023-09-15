@@ -15,6 +15,8 @@ function Demo() {
   //these constants set the state for different parts of the frontend
   const [selectedFile, setSelectedFile] = useState(null);
   const [selectedFileTwo, setSelectedFileTwo] = useState(null);
+  const [matrixData, setMatrixData] = useState(null);
+  const [matrixDataTwo, setMatrixDataTwo] = useState(null);
   const [gotResult, setGotResult] = useState(null);
   const [filename, setFilename] = useState(null);
   const [fileNameTwo, setfileNameTwo] = useState(null);
@@ -114,6 +116,7 @@ function Demo() {
       setIsValidMatrix(isValid);
 
       if (isValid) {
+        setMatrixData(matrixData);
         const canvas = document.getElementById('matrix-canvas');
         const ctx = canvas.getContext('2d');
         drawMatrix(matrixData, canvas, ctx);
@@ -145,6 +148,7 @@ function Demo() {
       setIsValidMatrixTwo(isValid);
 
       if (isValid) {
+        setMatrixDataTwo(matrixData);
         const canvas = document.getElementById('matrix-canvas-two');
         const ctx = canvas.getContext('2d');
         drawMatrix(matrixData, canvas, ctx);
@@ -209,7 +213,7 @@ function Demo() {
               </form>
               <canvas id="matrix-canvas-two"></canvas>
               <div>
-                <button type="submit" onClick={() => handleAddition(selectedFile, selectedFileTwo)}>
+                <button type="submit" onClick={() => handleAddition(matrixData, matrixDataTwo)}>
                   Compute
                 </button>
               </div>
