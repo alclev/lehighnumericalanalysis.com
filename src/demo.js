@@ -4,9 +4,6 @@ import './demo.css';
 import {handleAddition, handleMultiply, handleTranspose, handleInverse} from './api';
 //import './api.js'
 
-
-
-
 function Demo() {
   //these constants set the state for different parts of the frontend
   const [selectedFile, setSelectedFile] = useState(null);
@@ -19,10 +16,8 @@ function Demo() {
   const [isValidMatrix, setIsValidMatrix] = useState(true); // assuming it is initially valid
   const [isValidMatrixTwo, setIsValidMatrixTwo] = useState(true); // assuming it is initially valid
   const [buttons, setButtons] = useState([]);
-
   const [add_called, setAdd_called] = useState(false);
   const [mult_called, setMult_called] = useState(false);
-  //for mult
   const [scalar, setScalar] = useState('');
   const [transpose_called, setTranspose_called] = useState(false);
   const [inverse_called, setInverse_called] = useState(false);
@@ -43,7 +38,6 @@ function Demo() {
     setJacobi_called(false);
     setGauss_siedel_called(false);
   }
-
   //when we get an add, set all the other operations to false
   function add_handler(){
     set_all_operations_false()
@@ -77,7 +71,7 @@ function Demo() {
     set_all_operations_false()
     setGauss_siedel_called(true);
   }
-
+  //maps the functions to a value
   const func_map = {
     0x10: add_handler,
     0x11: mult_handler,
@@ -88,19 +82,19 @@ function Demo() {
     0x30: jacobi_handler,
     0x31: gauss_siedel_handler,
   }
-
+  //calls the correct handler based on the ID
   function handleClick(funcId) {
     const func = func_map[funcId];
     func();
   }
-
+  //when a file is inputed update some states
   const handleFileInputChange = (event) => {
     setSelectedFile(event.target.files[0]);
     setFilename(event.target.files[0].name);
     setButtonColor("#4CAF50");
     setButtons([]);
   };
-
+  //when a file is submited, validate it and display it
   const handleSubmit = (event) => {
     event.preventDefault();
     const reader = new FileReader();
@@ -124,14 +118,14 @@ function Demo() {
       }
     };
   };
-
+  //for when the functions requires two matrices
   const handleFileInputChangeTwo = (event) => {
     setSelectedFileTwo(event.target.files[0]);
     setfileNameTwo(event.target.files[0].name);
     setButtonColorSecondFileUpload("#4CAF50");
     setButtons([]);
   };
-
+  //for when the functions require two matrices
   const handleSubmitSecondMatrix = (event) => {
     event.preventDefault();
     const reader = new FileReader();
