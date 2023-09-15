@@ -205,7 +205,7 @@ function Demo() {
               </form>
               <canvas id="matrix-canvas-two"></canvas>
               <div>
-                <button type="submit" onClick={() => handleAddition(matrixData, matrixDataTwo)}>
+                <button type="submit" onClick={() => {handleAddition(matrixData, matrixDataTwo); set_all_operations_false()}}>
                   Compute
                 </button>
               </div>
@@ -221,7 +221,7 @@ function Demo() {
                 value={scalar}
                 onChange={(e) => setScalar(e.target.value)}
               />
-              <button type="submit" onClick={() => handleMultiply(matrixData, scalar)}>
+              <button type="submit" onClick={() => {handleMultiply(matrixData, scalar);set_all_operations_false}}>
                 Compute
               </button>
             </div>
@@ -229,7 +229,7 @@ function Demo() {
           {transpose_called && (
             <div>
               <p>Transpose the matrix.</p>
-              <button type="submit" onClick={() => handleTranspose(matrixData)}>
+              <button type="submit" onClick={() => {handleTranspose(matrixData);set_all_operations_false}}>
                 Compute
               </button>
             </div>
@@ -237,7 +237,7 @@ function Demo() {
           {inverse_called && (
             <div>
               <p>Inverse the matrix.</p>
-              <button type="submit" onClick={() => handleInverse(matrixData)}>
+              <button type="submit" onClick={() => {handleInverse(matrixData);set_all_operations_false}}>
                 Compute
               </button>
             </div>
