@@ -154,6 +154,32 @@ function Demo() {
       }
     };
   };
+      //when a file is submited, validate it and display it
+  const handleCompute = (event) => {
+    event.preventDefault();
+    const reader = new FileReader();
+    reader.readAsText(selectedFile);
+    reader.onload = (event) => {
+      const matrixData = event.target.result;
+      const isValid = parseMatrix(matrixData);
+      setButtonColor(isValid ? "#4CAF50" : "#CCCCCC");
+      setIsValidMatrix(isValid);
+
+      if (isValid) {
+        setMatrixData(matrixData);
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+        drawMatrix(matrixData, canvas, ctx);
+        const buttons = buttonData.map((button) => (
+          <button key={button.func_id} onClick={() => handleClick(button.func_id)}>
+            {button.label}
+          </button>
+        ));
+        setButtons(buttons);
+      }
+    };
+  };
+
 
   return (
     <div className="file-upload">
@@ -205,7 +231,7 @@ function Demo() {
               </form>
               <canvas id="matrix-canvas-two"></canvas>
               <div>
-                <button type="submit" onClick={() => {handleAddition(matrixData, matrixDataTwo); set_all_operations_false()}}>
+                <button type="submit" onClick={() => {handleAddition(matrixData, matrixDataTwo);handleCompute();}}>
                   Compute
                 </button>
               </div>
@@ -221,7 +247,7 @@ function Demo() {
                 value={scalar}
                 onChange={(e) => setScalar(e.target.value)}
               />
-              <button type="submit" onClick={() => {handleMultiply(matrixData, scalar);set_all_operations_false}}>
+              <button type="submit" onClick={() => handleMultiply(matrixData, scalar)}>
                 Compute
               </button>
             </div>
@@ -229,7 +255,7 @@ function Demo() {
           {transpose_called && (
             <div>
               <p>Transpose the matrix.</p>
-              <button type="submit" onClick={() => {handleTranspose(matrixData);set_all_operations_false}}>
+              <button type="submit" onClick={() => handleTranspose(matrixData)}>
                 Compute
               </button>
             </div>
@@ -237,7 +263,7 @@ function Demo() {
           {inverse_called && (
             <div>
               <p>Inverse the matrix.</p>
-              <button type="submit" onClick={() => {handleInverse(matrixData);set_all_operations_false}}>
+              <button type="submit" onClick={() => handleInverse(matrixData)}>
                 Compute
               </button>
             </div>
@@ -266,6 +292,12 @@ function Demo() {
               <button type="submit">Compute</button>
             </div>
           )}
+        </div>
+      )}
+      {gotResult && (
+        <div>
+          <p>And the result is...</p>
+           <canvas id="matrix-canvas"></canvas>
         </div>
       )}
     </div>
