@@ -156,33 +156,20 @@ function Demo() {
   };
       //when a file is submited, validate it and display it
   const handleCompute = (event) => {
+    handleAddition(matrixData, matrixDataTwo);
     event.preventDefault();
-    const reader = new FileReader();
-    reader.readAsText(selectedFile);
-    reader.onload = (event) => {
-      const matrixData = event.target.result;
-      const isValid = parseMatrix(matrixData);
-      setButtonColor(isValid ? "#4CAF50" : "#CCCCCC");
-      setIsValidMatrix(isValid);
-
-      if (isValid) {
-        setMatrixData(matrixData);
-        const canvas = document.getElementById('matrix-canvas');
-        const ctx = canvas.getContext('2d');
-        drawMatrix(matrixData, canvas, ctx);
-        const buttons = buttonData.map((button) => (
-          <button key={button.func_id} onClick={() => handleClick(button.func_id)}>
-            {button.label}
-          </button>
-        ));
-        setButtons(buttons);
-      }
-    };
+    set_all_operations_false();
+    setGotResult(true);
+    const canvas = document.getElementById('matrix-canvas-result');
+    const ctx = canvas.getContext('2d');
+    drawMatrix(matrixData, canvas, ctx);
   };
 
 
   return (
     <div className="file-upload">
+    {!gotResult && (
+      <div >
       <div className="matrix-format-box">
         <h2>Upload Your Matrix File</h2>
         <div>
@@ -231,9 +218,11 @@ function Demo() {
               </form>
               <canvas id="matrix-canvas-two"></canvas>
               <div>
-                <button type="submit" onClick={() => {handleAddition(matrixData, matrixDataTwo);handleCompute();}}>
-                  Compute
-                </button>
+              <form onSubmit={handleCompute}>
+              <button type="submit">
+                Compute
+              </button>
+              </form>
               </div>
             </div>
           )}
@@ -294,12 +283,14 @@ function Demo() {
           )}
         </div>
       )}
-      {gotResult && (
-        <div>
-          <p>And the result is...</p>
-           <canvas id="matrix-canvas"></canvas>
-        </div>
-      )}
+    </div>
+    )}
+    {gotResult && (
+      <div>
+        <p>And the result is...</p>
+         <canvas id="matrix-canvas-result"></canvas>
+      </div>
+    )}
     </div>
   );
 }
