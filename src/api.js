@@ -13,7 +13,7 @@ export const handleAddition = function (selectedFile, selectedFile2) {
     secondMatrixData: selectedFile2,
   };
   console.log(JSON.stringify(selectedFile));
-  return '2,2\n2,4\n6,8';
+  return '2,2\n2,4,6,8';
   // Make a POST to API
   // axios.post(routeToHit, data)
   //   .then((response) => {
