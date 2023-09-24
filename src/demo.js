@@ -157,18 +157,19 @@ function Demo() {
       //when a file is submited, validate it and display it
   const handleCompute = (event) => {
     handleAddition(matrixData, matrixDataTwo);
-    event.preventDefault();
-    set_all_operations_false();
+    //event.preventDefault();
+    //set_all_operations_false();
     setGotResult(true);
     const canvas = document.getElementById('matrix-canvas-result');
     const ctx = canvas.getContext('2d');
-    drawMatrix(matrixData, canvas, ctx);
+    drawMatrix(matrixDataTwo, canvas, ctx);
   };
 
 
   return (
     <div className="file-upload">
-    {!gotResult && (
+    {//!gotResult && (
+      true &&(
       <div >
       <div className="matrix-format-box">
         <h2>Upload Your Matrix File</h2>
@@ -223,6 +224,7 @@ function Demo() {
                 Compute
               </button>
               </form>
+
               </div>
             </div>
           )}
