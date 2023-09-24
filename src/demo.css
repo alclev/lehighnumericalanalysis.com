@@ -78,6 +78,36 @@ label[for="file-input"].file-invalid {
   border-color: #ff0000;
 }
 
+label[for="file-input-2"] {
+  display: block;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border: 2px dashed grey;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  outline: none;
+  border-style: dashed;
+  background-color: transparent;
+}
+
+label[for="file-input-2"]:hover {
+  border-color: #999999;
+}
+
+label[for="file-input-2"].file-selected {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+  color: #FFFFFF;
+}
+
+label[for="file-input-2"].file-invalid {
+  border-color: #ff0000;
+}
+
 input[type="file"] {
   display: none;
 }
@@ -112,6 +142,21 @@ label[for="file-input"].file-invalid + button[type="submit"] {
 }
 
 label[for="file-input"].file-selected + button[type="submit"]:disabled {
+  background-color: #CCCCCC;
+  cursor: default;
+}
+
+label[for="file-input-2"].file-selected + button[type="submit"] {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+}
+
+label[for="file-input-2"].file-invalid + button[type="submit"] {
+  background-color: #FF0000;
+  border-color: #FF0000;
+}
+
+label[for="file-input-2"].file-selected + button[type="submit"]:disabled {
   background-color: #CCCCCC;
   cursor: default;
 }
