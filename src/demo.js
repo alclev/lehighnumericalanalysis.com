@@ -150,7 +150,6 @@ function Demo() {
   };
   //when a file is submited, validate it and display it
   const handleCompute = (event) => {
-    event.preventDefault();
     const result = handleAddition(matrixData, matrixDataTwo);
     setGotResult(true);
     const canvas = document.getElementById('matrix-canvas-result');
@@ -160,6 +159,18 @@ function Demo() {
     drawMatrix(result, canvas, ctx);
     //set_all_operations_false();
   };
+
+    //when a file is submited, validate it and display it
+    const handleComputeScalar = (event) => {
+      const result = handleMultiply(matrixData, scalar);
+      setGotResult(true);
+      const canvas = document.getElementById('matrix-canvas-result');
+      console.log(matrixDataResult + "HI");
+      console.log(event);
+      const ctx = canvas.getContext('2d');
+      drawMatrix(result, canvas, ctx);
+      //set_all_operations_false();
+    };
 
 
 
@@ -216,18 +227,10 @@ function Demo() {
               </form>
               <canvas id="matrix-canvas-two"></canvas>
               <div>
-              <form onSubmit={handleCompute}>
-              <button type="submit">
+              <button type="submit" onClick={() => handleCompute()}>
                 Compute
               </button>
-              </form>
-              {gotResult && (
-                <div>
-                  <p>And the result is...</p>
-                   
-                </div>
-              )}
-              <canvas id="matrix-canvas-result"></canvas>
+
               </div>
             </div>
           )}
@@ -241,7 +244,7 @@ function Demo() {
                 value={scalar}
                 onChange={(e) => setScalar(e.target.value)}
               />
-              <button type="submit" onClick={() => handleMultiply(matrixData, scalar)}>
+              <button type="submit" onClick={() => handleComputeScalar()}>
                 Compute
               </button>
             </div>
@@ -290,7 +293,13 @@ function Demo() {
       )}
     </div>
     )}
-
+              {gotResult && (
+                <div>
+                  <p>And the result is...</p>
+                   
+                </div>
+              )}
+              <canvas id="matrix-canvas-result"></canvas>
     </div>
   );
 }

@@ -33,6 +33,7 @@ export const handleMultiply = function (selectedFile, scalar) {
     matrixData: selectedFile,
     scalar: parseFloat(scalar),
   };
+  return '2,2\n2,4,6,8';
   // Make a POST to API
   axios.post(routeToHit, data)
     .then((response) => {
