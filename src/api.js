@@ -23,8 +23,6 @@ export const handleAddition = function (selectedFile, selectedFile2) {
   // Handle any errors
 });
   console.log(JSON.stringify(selectedFile));
-  socket.send(data);
-  // Make a POST to API
 };
 
 //the input to this function should validate that the inputs are valid numbers
