@@ -1,7 +1,5 @@
 import axios from 'axios';
-const routeToHit = '127.0.0.1';
-
-
+const routeToHit = '127.0.0.1:55555';
 
 
 export const handleAddition = function (selectedFile, selectedFile2) {
@@ -13,15 +11,14 @@ export const handleAddition = function (selectedFile, selectedFile2) {
     secondMatrixData: selectedFile2,
   };
   console.log(JSON.stringify(selectedFile));
-  return '2,2\n2,4,6,8';
   // Make a POST to API
-  // axios.post(routeToHit, data)
-  //   .then((response) => {
-  //     setMatrixDataResult(response.matrixData);
-  //   })
-  //   .catch((error) => {
-  //     console.error('Error:', error);
-  //   });
+  axios.post(routeToHit, data)
+    .then((response) => {
+      console.log(response.data); /* here */
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
 };
 
 //the input to this function should validate that the inputs are valid numbers
