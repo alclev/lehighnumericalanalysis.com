@@ -1,4 +1,4 @@
-const socket = new WebSocket('ws://localhost:8080');
+// const socket = new WebSocket('ws://localhost:55555');
 
 export const handleAddition = function (selectedFile, selectedFile2) {
   //data to send to backend
@@ -8,6 +8,20 @@ export const handleAddition = function (selectedFile, selectedFile2) {
     matrixData: selectedFile,
     secondMatrixData: selectedFile2,
   };
+  fetch('http://localhost:8080', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+  },
+    body: data,
+  })
+  .then(response => response.json())
+  .then(data => {
+    // Handle the response from the C++ backend
+  })
+.catch(error => {
+  // Handle any errors
+});
   console.log(JSON.stringify(selectedFile));
   socket.send(data);
   // Make a POST to API
