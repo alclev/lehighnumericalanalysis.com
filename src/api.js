@@ -1,4 +1,5 @@
-// const socket = new WebSocket('ws://localhost:55555');
+import axios from 'axios';
+
 
 export const handleAddition = function (selectedFile, selectedFile2) {
   //data to send to backend
@@ -8,21 +9,14 @@ export const handleAddition = function (selectedFile, selectedFile2) {
     matrixData: selectedFile,
     secondMatrixData: selectedFile2,
   };
-  fetch('http://localhost:8080', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-  },
-    body: data,
-  })
-  .then(response => response.json())
-  .then(data => {
-    // Handle the response from the C++ backend
-  })
-.catch(error => {
-  // Handle any errors
-});
-  console.log(JSON.stringify(selectedFile));
+  console.log('Im working!');
+
+  axios.post('http://localhost:8080', data)
+    .then((response) => {
+      console.log(response);
+    }, (error) => {
+      console.log(error);
+    });
 };
 
 //the input to this function should validate that the inputs are valid numbers
