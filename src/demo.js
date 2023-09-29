@@ -125,7 +125,6 @@ function Demo() {
   };
   //for when the functions requires two matrices
   const handleFileInputChangeTwo = (event) => {
-    console.log("LUKEHALE");
     setSelectedFileTwo(event.target.files[0]);
     setfileNameTwo(event.target.files[0].name);
     setButtonColorSecondFileUpload("#4CAF50");
@@ -153,8 +152,6 @@ function Demo() {
     const result = handleAddition(matrixData, matrixDataTwo);
     setGotResult(true);
     const canvas = document.getElementById('matrix-canvas-result');
-    console.log(matrixDataResult + "HI");
-    console.log(event);
     const ctx = canvas.getContext('2d');
     drawMatrix(result, canvas, ctx);
     //set_all_operations_false();
@@ -165,8 +162,6 @@ function Demo() {
       const result = handleMultiply(matrixData, scalar);
       setGotResult(true);
       const canvas = document.getElementById('matrix-canvas-result');
-      console.log(matrixDataResult + "HI");
-      console.log(event);
       const ctx = canvas.getContext('2d');
       drawMatrix(result, canvas, ctx);
       //set_all_operations_false();

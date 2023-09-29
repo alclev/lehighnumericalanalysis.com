@@ -1,5 +1,12 @@
 import axios from 'axios';
 
+// const instance = axios.create({
+//   baseURL: 'http://localhost:8080',
+//   timeout: 1000,
+//   headers: {'Content-Type': 'text/html; charset=utf-8'
+// }
+
+// });
 
 export const handleAddition = function (selectedFile, selectedFile2) {
   //data to send to backend
@@ -9,9 +16,7 @@ export const handleAddition = function (selectedFile, selectedFile2) {
     matrixData: selectedFile,
     secondMatrixData: selectedFile2,
   };
-  console.log('Im working!');
-
-  axios.post('http://localhost:8080', data)
+  axios.post('http://localhost:80', data)
     .then((response) => {
       console.log(response);
     }, (error) => {
