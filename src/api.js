@@ -16,7 +16,7 @@ export const handleAddition = function (selectedFile, selectedFile2) {
     matrixData: selectedFile,
     secondMatrixData: selectedFile2,
   };
-  axios.post('http://localhost:8080', data)
+  axios.post('http://localhost:8080/', data)
     .then((response) => {
       console.log(response);
     }, (error) => {
