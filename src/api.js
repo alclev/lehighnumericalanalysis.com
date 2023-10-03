@@ -18,7 +18,7 @@ export const handleAddition = function (selectedFile, selectedFile2) {
   };
   axios({
     method: 'post',
-    url: 'http://localhost:8080',
+    url: 'http://127.0.0.l:8080',
     data: data,
     withCredentials: false,
   });
