@@ -16,12 +16,12 @@ export const handleAddition = function (selectedFile, selectedFile2) {
     matrixData: selectedFile,
     secondMatrixData: selectedFile2,
   };
-  axios.post('http://127.0.0.1:55555', data)
-    .then((response) => {
-      console.log(response);
-    }, (error) => {
-      console.log(error);
-    });
+  axios({
+    method: 'post',
+    url: 'http://localhost:8080',
+    data: data,
+    withCredentials: false,
+  });
 };
 
 //the input to this function should validate that the inputs are valid numbers
