@@ -18,7 +18,7 @@ export const handleAddition = function (selectedFile, selectedFile2) {
     secondMatrixData: selectedFile2,
   };
   const axios = require('axios');
-  axios.post('http://127.0.0.1:8080', data)
+  axios.get('https://google.com')
   .then(function (response) {
     console.log(response);
   })
