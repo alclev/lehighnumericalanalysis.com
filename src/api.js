@@ -22,7 +22,15 @@ export const handleAddition = function (selectedFile, selectedFile2) {
     url: 'http://127.0.0.1:8080',
     data: data,
     withCredentials: false,
-  });
+  })
+    .then((response) => {
+      // Handle the success response here
+      console.log('POST request successful:', response.data);
+    })
+    .catch((error) => {
+      // Handle any errors that occurred during the request
+      console.error('Error making POST request:', error);
+    });
 };
 
 //the input to this function should validate that the inputs are valid numbers
