@@ -7,6 +7,7 @@ import axios from 'axios';
 // }
 
 // });
+const axios = require('axios');
 
 export const handleAddition = function (selectedFile, selectedFile2) {
   //data to send to backend
