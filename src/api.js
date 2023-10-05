@@ -18,7 +18,12 @@ export const handleAddition = function (selectedFile, selectedFile2) {
     matrixData: selectedFile,
     secondMatrixData: selectedFile2,
   };
-  axios.get('https://google.com')
+  const options = {
+    headers:{ 'Content-Type': 'application/json', 
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',}
+  }
+  axios.get('https://google.com', options)
   .then(function (response) {
     console.log(response);
   })
