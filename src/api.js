@@ -23,7 +23,7 @@ export const handleAddition = function (selectedFile, selectedFile2) {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',}
   }
-  axios.get('https://google.com', options)
+  axios.post('http://127.0.0.1:8080', data, options)
   .then(function (response) {
     console.log(response);
   })
