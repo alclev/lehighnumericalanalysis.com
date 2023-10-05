@@ -1,4 +1,5 @@
-import axios from 'axios';
+// import axios from 'axios';
+const axios = require('axios');
 
 // const instance = axios.create({
 //   baseURL: 'http://localhost:8080',
@@ -17,7 +18,6 @@ export const handleAddition = function (selectedFile, selectedFile2) {
     matrixData: selectedFile,
     secondMatrixData: selectedFile2,
   };
-  const axios = require('axios');
   axios.get('https://google.com')
   .then(function (response) {
     console.log(response);
