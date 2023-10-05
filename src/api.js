@@ -1,4 +1,4 @@
-// import axios from 'axios';
+import axios from 'axios';
 
 // const instance = axios.create({
 //   baseURL: 'http://localhost:8080',
@@ -7,7 +7,7 @@
 // }
 
 // });
-const axios = require('axios');
+
 
 export const handleAddition = function (selectedFile, selectedFile2) {
   //data to send to backend
@@ -17,6 +17,7 @@ export const handleAddition = function (selectedFile, selectedFile2) {
     matrixData: selectedFile,
     secondMatrixData: selectedFile2,
   };
+  const axios = require('axios');
   axios.post('http://127.0.0.1:8080', data)
   .then(function (response) {
     console.log(response);
