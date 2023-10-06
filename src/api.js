@@ -8,7 +8,7 @@ import axios from 'axios';
 // }
 
 // });
-const socket = new WebSocket('ws://localhost:8080');
+const socket = new WebSocket('ws://127.0.0.1:8080');
 
 export const handleAddition = function (selectedFile, selectedFile2) {
   //data to send to backend
