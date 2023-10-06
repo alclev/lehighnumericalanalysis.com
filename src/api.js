@@ -19,9 +19,9 @@ export const handleAddition = function (selectedFile, selectedFile2) {
     secondMatrixData: selectedFile2,
   };
   const options = {
-    headers:{ 'Content-Type': 'application/json', 
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',}
+    headers:{ 
+      'Origin': 'http://127.0.0.1:8080',
+      'Content-Type': 'application/json',}
   }
   axios.post('http://127.0.0.1:8080', data, options)
   .then(function (response) {
