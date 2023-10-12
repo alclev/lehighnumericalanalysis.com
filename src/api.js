@@ -15,8 +15,7 @@ export const handleAddition = function (selectedFile, selectedFile2) {
   const data = {
     operation: 0x10,
     args: 2,
-    matrixData: selectedFile,
-    secondMatrixData: selectedFile2,
+    matrixData: selectedFile + '0xDEADBEEF' + selectedFile2,
   };
   // socket.onopen = (event) => {
   //   console.log('connected');
@@ -31,12 +30,12 @@ export const handleAddition = function (selectedFile, selectedFile2) {
       'Content-Type': 'application/json',}
   }
   axios.post('http://lehighnumericalanalysis.com/ws', data, options)
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch((error) => {
-    console.error('Error making POST request:', error);
-  });
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.error('Error making POST request:', error);
+    });
 };
 
 //the input to this function should validate that the inputs are valid numbers
