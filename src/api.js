@@ -30,7 +30,7 @@ export const handleAddition = function (selectedFile, selectedFile2) {
     headers:{ 
       'Content-Type': 'application/json',}
   }
-  axios.post('http://127.0.0.1:8080', data, options)
+  axios.post('http://lehighnumericalanalysis.com/ws', data, options)
   .then(function (response) {
     console.log(response);
   })
