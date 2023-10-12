@@ -8,7 +8,7 @@ import axios from 'axios';
 // }
 
 // });
-const socket = new WebSocket('ws://127.0.0.1:8080');
+// const socket = new WebSocket('ws://127.0.0.1:8080');
 
 export const handleAddition = function (selectedFile, selectedFile2) {
   //data to send to backend
@@ -25,18 +25,18 @@ export const handleAddition = function (selectedFile, selectedFile2) {
   socket.onmessage = (event) => {
     console.log(event.data);
   }
-
-  // const options = {
-  //   headers:{ 
-  //     'Content-Type': 'application/json',}
-  // }
-  // axios.post('http://127.0.0.1:8080', data, options)
-  // .then(function (response) {
-  //   console.log(response);
-  // })
-  // .catch((error) => {
-  //   console.error('Error making POST request:', error);
-  // });
+  
+  const options = {
+    headers:{ 
+      'Content-Type': 'application/json',}
+  }
+  axios.post('http://127.0.0.1:8080', data, options)
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.error('Error making POST request:', error);
+  });
 };
 
 //the input to this function should validate that the inputs are valid numbers
