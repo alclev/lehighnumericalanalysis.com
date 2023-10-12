@@ -18,14 +18,14 @@ export const handleAddition = function (selectedFile, selectedFile2) {
     matrixData: selectedFile,
     secondMatrixData: selectedFile2,
   };
-  socket.onopen = (event) => {
-    console.log('connected');
-    socket.send(JSON.stringify(data));
-  }
-  socket.onmessage = (event) => {
-    console.log(event.data);
-  }
-  
+  // socket.onopen = (event) => {
+  //   console.log('connected');
+  //   socket.send(JSON.stringify(data));
+  // }
+  // socket.onmessage = (event) => {
+  //   console.log(event.data);
+  // }
+
   const options = {
     headers:{ 
       'Content-Type': 'application/json',}
