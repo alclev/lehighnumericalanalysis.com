@@ -1,4 +1,5 @@
 import axios from 'axios';
+export const DELIMITER = '0xDEADBEEF';
 // const axios = require('axios');
 
 // const instance = axios.create({
@@ -15,15 +16,8 @@ export const handleAddition = function (selectedFile, selectedFile2) {
   const data = {
     operation: 0x10,
     args: 2,
-    matrixData: selectedFile + '0xDEADBEEF' + selectedFile2,
+    matrixData: selectedFile + DELIMITER + selectedFile2,
   };
-  // socket.onopen = (event) => {
-  //   console.log('connected');
-  //   socket.send(JSON.stringify(data));
-  // }
-  // socket.onmessage = (event) => {
-  //   console.log(event.data);
-  // }
 
   const options = {
     headers:{ 
@@ -44,10 +38,19 @@ export const handleMultiply = function (selectedFile, scalar) {
   const data = {
     operation: 0x11,
     args: 2,
-    matrixData: selectedFile,
-    scalar: parseFloat(scalar),
+    matrixData: selectedFile + DELIMITER + parseFloat(scalar),
   };
-  return '2,2\n2,4,6,8';
+  const options = {
+    headers:{ 
+      'Content-Type': 'application/json',}
+  }
+  axios.post('http://lehighnumericalanalysis.com/ws', data, options)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.error('Error making POST request:', error);
+    });
 };
 
 export const handleTranspose = function (selectedFile) {
@@ -57,6 +60,17 @@ export const handleTranspose = function (selectedFile) {
     args: 1,
     matrixData: selectedFile,
   };
+  const options = {
+    headers:{ 
+      'Content-Type': 'application/json',}
+  }
+  axios.post('http://lehighnumericalanalysis.com/ws', data, options)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.error('Error making POST request:', error);
+    });
 };
 
 export const handleInverse = function (selectedFile) {
@@ -66,4 +80,15 @@ export const handleInverse = function (selectedFile) {
     args: 1,
     matrixData: selectedFile,
   };
+  const options = {
+    headers:{ 
+      'Content-Type': 'application/json',}
+  }
+  axios.post('http://lehighnumericalanalysis.com/ws', data, options)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.error('Error making POST request:', error);
+    });
 };
