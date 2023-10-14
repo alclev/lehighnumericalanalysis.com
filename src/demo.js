@@ -282,9 +282,21 @@ function Demo() {
           )}
           {gauss_called && (
             <div>
-              <p>Solve the system using Gauss elimination</p>
-              <button type="submit">Compute</button>
+            <label for="add">Upload B vector to solve the system using Gauss elimination</label>
+            <form onSubmit={handleSubmitSecondMatrix}>
+            <label htmlFor="file-input-2" className={isValidMatrixTwo ? "file-input" : "file-input file-invalid"} style={{ backgroundColor: buttonColorSecondFileUpload }}>
+                <i className="fas fa-cloud-upload-alt"></i> {fileNameTwo || "Choose File"}
+              </label>
+              <input id="file-input-2" type="file" name="file" onChange={handleFileInputChangeTwo} />
+              <button type="submit" className="file-input" style={{ backgroundColor: buttonColorSecondFileUpload }} disabled={!selectedFileTwo}>Upload</button>      
+            </form>
+            <canvas id="matrix-canvas-two"></canvas>
+            <div>
+            <button type="submit" onClick={() => handleComputeAddition()}>
+              Compute
+            </button>
             </div>
+          </div>
           )}
           {luFact_called && (
             <div>
