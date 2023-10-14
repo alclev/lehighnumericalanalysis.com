@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { parseMatrix, drawMatrix, buttonData } from './dataPackaging';
 import './demo.css';
-import {handleAddition, handleMultiply, handleTranspose, handleInverse} from './api';
+import {handleAddition, handleMultiply, handleTranspose, handleInverse, handleGaussElimination
+handleLuFactorization, handleJacobiMethod, handleGaussSidel} from './api';
 //import './api.js'
 
 function Demo() {
@@ -177,15 +178,55 @@ function Demo() {
     //set_all_operations_false();
   };
 
-    //when a file is submited, validate it and display it
-    const handleComputeInverse = (event) => {
-      const result = handleInverse(matrixData);
-      setGotResult(true);
-      const canvas = document.getElementById('matrix-canvas-result');
-      const ctx = canvas.getContext('2d');
-      drawMatrix(result, canvas, ctx);
-      //set_all_operations_false();
-    };
+  //when a file is submited, validate it and display it
+  const handleComputeInverse = (event) => {
+    const result = handleInverse(matrixData);
+    setGotResult(true);
+    const canvas = document.getElementById('matrix-canvas-result');
+    const ctx = canvas.getContext('2d');
+    drawMatrix(result, canvas, ctx);
+    //set_all_operations_false();
+  };
+
+  //when a file is submited, validate it and display it
+  const handleComputeGaussElimination = (event) => {
+    const result = handleGaussElimination(matrixData);
+    setGotResult(true);
+    const canvas = document.getElementById('matrix-canvas-result');
+    const ctx = canvas.getContext('2d');
+    drawMatrix(result, canvas, ctx);
+    //set_all_operations_false();
+  };
+
+  //when a file is submited, validate it and display it
+  const handleComputeLuFactorization = (event) => {
+    const result = handleLuFactorization(matrixData);
+    setGotResult(true);
+    const canvas = document.getElementById('matrix-canvas-result');
+    const ctx = canvas.getContext('2d');
+    drawMatrix(result, canvas, ctx);
+    //set_all_operations_false();
+  };
+
+  //when a file is submited, validate it and display it
+  const handleComputJacobiMethod = (event) => {
+    const result = handleJacobiMethod(matrixData);
+    setGotResult(true);
+    const canvas = document.getElementById('matrix-canvas-result');
+    const ctx = canvas.getContext('2d');
+    drawMatrix(result, canvas, ctx);
+    //set_all_operations_false();
+  };
+
+  //when a file is submited, validate it and display it
+  const handleComputeGaussSidel = (event) => {
+    const result = handleGaussSidel(matrixData);
+    setGotResult(true);
+    const canvas = document.getElementById('matrix-canvas-result');
+    const ctx = canvas.getContext('2d');
+    drawMatrix(result, canvas, ctx);
+    //set_all_operations_false();
+  };
 
 
 

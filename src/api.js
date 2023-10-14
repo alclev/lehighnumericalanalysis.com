@@ -92,3 +92,83 @@ export const handleInverse = function (selectedFile) {
       console.error('Error making POST request:', error);
     });
 };
+
+export const handleGaussElimination = function (matrixA,vectorB) {
+  //data to send to backend
+  const data = {
+    operation: 0x20,
+    args: 2,
+    matrixData: matrixA + DELIMITER + vectorB
+  };
+  const options = {
+    headers:{ 
+      'Content-Type': 'application/json',}
+  }
+  axios.post('http://lehighnumericalanalysis.com/ws', data, options)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.error('Error making POST request:', error);
+    });
+};
+
+export const handleLuFactorization = function (matrixA,vectorB) {
+  //data to send to backend
+  const data = {
+    operation: 0x21,
+    args: 2,
+    matrixData: matrixA + DELIMITER + vectorB
+  };
+  const options = {
+    headers:{ 
+      'Content-Type': 'application/json',}
+  }
+  axios.post('http://lehighnumericalanalysis.com/ws', data, options)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.error('Error making POST request:', error);
+    });
+};
+
+export const handleJacobiMethod = function (matrixA,vectorB) {
+  //data to send to backend
+  const data = {
+    operation: 0x30,
+    args: 2,
+    matrixData: matrixA + DELIMITER + vectorB
+  };
+  const options = {
+    headers:{ 
+      'Content-Type': 'application/json',}
+  }
+  axios.post('http://lehighnumericalanalysis.com/ws', data, options)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.error('Error making POST request:', error);
+    });
+};
+
+export const handleGaussSidel = function (matrixA,vectorB) {
+  //data to send to backend
+  const data = {
+    operation: 0x31,
+    args: 2,
+    matrixData: matrixA + DELIMITER + vectorB
+  };
+  const options = {
+    headers:{ 
+      'Content-Type': 'application/json',}
+  }
+  axios.post('http://lehighnumericalanalysis.com/ws', data, options)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.error('Error making POST request:', error);
+    });
+};
