@@ -5,7 +5,7 @@ export const handleAddition = function (selectedFile, selectedFile2) {
   const data = {
     operation: 0x10,
     exp_resp: 2,
-    matrixData: selectedFile + 'XXXXXXXX' + selectedFile2 + 'XXXXXXXX',
+    data: selectedFile + 'XXXXXXXX' + selectedFile2 + 'XXXXXXXX',
   };
 
   const options = {
