@@ -11,12 +11,12 @@ export const DELIMITER = '0xDEADBEEF';
 // });
 // const socket = new WebSocket('ws://127.0.0.1:8080');
 
-export const handleAddition = function (selectedFile, selectedFile2) {
+export const handleAddition = function (matrixA, matrixB) {
   //data to send to backend
   const data = {
     operation: 0x10,
     args: 2,
-    matrixData: selectedFile + DELIMITER + selectedFile2,
+    matrixData: matrixA + DELIMITER + matrixB,
   };
 
   const options = {
@@ -33,12 +33,12 @@ export const handleAddition = function (selectedFile, selectedFile2) {
 };
 
 //the input to this function should validate that the inputs are valid numbers
-export const handleMultiply = function (selectedFile, scalar) {
+export const handleMultiply = function (matrixA, scalar) {
   //data to send to backend
   const data = {
     operation: 0x11,
     args: 2,
-    matrixData: selectedFile + DELIMITER + parseFloat(scalar),
+    matrixData: matrixA + DELIMITER + parseFloat(scalar),
   };
   const options = {
     headers:{ 
@@ -53,12 +53,12 @@ export const handleMultiply = function (selectedFile, scalar) {
     });
 };
 
-export const handleTranspose = function (selectedFile) {
+export const handleTranspose = function (matrixA) {
   //data to send to backend
   const data = {
     operation: 0x12,
     args: 1,
-    matrixData: selectedFile,
+    matrixData: matrixA,
   };
   const options = {
     headers:{ 
@@ -73,12 +73,12 @@ export const handleTranspose = function (selectedFile) {
     });
 };
 
-export const handleInverse = function (selectedFile) {
+export const handleInverse = function (matrixA) {
   //data to send to backend
   const data = {
     operation: 0x13,
     args: 1,
-    matrixData: selectedFile,
+    matrixData: matrixA,
   };
   const options = {
     headers:{ 

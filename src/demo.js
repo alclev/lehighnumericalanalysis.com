@@ -191,7 +191,7 @@ function Demo() {
 
   //when a file is submited, validate it and display it
   const handleComputeGaussElimination = (event) => {
-    const result = handleGaussElimination(matrixData);
+    const result = handleGaussElimination(matrixData,matrixDataTwo);
     setGotResult(true);
     const canvas = document.getElementById('matrix-canvas-result');
     const ctx = canvas.getContext('2d');
@@ -201,7 +201,7 @@ function Demo() {
 
   //when a file is submited, validate it and display it
   const handleComputeLuFactorization = (event) => {
-    const result = handleLuFactorization(matrixData);
+    const result = handleLuFactorization(matrixData,matrixDataTwo);
     setGotResult(true);
     const canvas = document.getElementById('matrix-canvas-result');
     const ctx = canvas.getContext('2d');
@@ -211,7 +211,7 @@ function Demo() {
 
   //when a file is submited, validate it and display it
   const handleComputJacobiMethod = (event) => {
-    const result = handleJacobiMethod(matrixData);
+    const result = handleJacobiMethod(matrixData,matrixDataTwo);
     setGotResult(true);
     const canvas = document.getElementById('matrix-canvas-result');
     const ctx = canvas.getContext('2d');
@@ -221,7 +221,7 @@ function Demo() {
 
   //when a file is submited, validate it and display it
   const handleComputeGaussSidel = (event) => {
-    const result = handleGaussSidel(matrixData);
+    const result = handleGaussSidel(matrixData,matrixDataTwo);
     setGotResult(true);
     const canvas = document.getElementById('matrix-canvas-result');
     const ctx = canvas.getContext('2d');
