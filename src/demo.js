@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { parseMatrix, drawMatrix, buttonData, drawVector } from './dataPackaging';
+import { parseMatrix, drawMatrix, buttonData} from './dataPackaging';
 import './demo.css';
 import {handleAddition, handleMultiply, handleTranspose, handleInverse, handleGaussElimination,
 handleLuFactorization, handleJacobiMethod, handleGaussSidel} from './api';
