@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { parseMatrix, drawMatrix, buttonData } from './dataPackaging';
+import { parseMatrix, drawMatrix, buttonData, drawVector } from './dataPackaging';
 import './demo.css';
-import {handleAddition, handleMultiply, handleTranspose, handleInverse, handleGaussElimination
+import {handleAddition, handleMultiply, handleTranspose, handleInverse, handleGaussElimination,
 handleLuFactorization, handleJacobiMethod, handleGaussSidel} from './api';
 //import './api.js'
 
@@ -148,6 +148,7 @@ function Demo() {
       }
     };
   };
+
   //when a file is submited, validate it and display it
   const handleComputeAddition = (event) => {
     const result = handleAddition(matrixData, matrixDataTwo);
@@ -227,9 +228,6 @@ function Demo() {
     drawMatrix(result, canvas, ctx);
     //set_all_operations_false();
   };
-
-
-
 
   return (
     <div className="file-upload">
@@ -333,28 +331,64 @@ function Demo() {
             </form>
             <canvas id="matrix-canvas-two"></canvas>
             <div>
-            <button type="submit" onClick={() => handleComputeAddition()}>
+            <button type="submit" onClick={() => handleComputeGaussElimination()}>
               Compute
             </button>
             </div>
           </div>
           )}
           {luFact_called && (
-            <div>
-              <p>Decompose the square matrix with LU factorization</p>
-              <button type="submit">Compute</button>
-           </div>
+             <div>
+             <label for="add">Upload B vector to solve the system using LU factorization</label>
+             <form onSubmit={handleSubmitSecondMatrix}>
+             <label htmlFor="file-input-2" className={isValidMatrixTwo ? "file-input" : "file-input file-invalid"} style={{ backgroundColor: buttonColorSecondFileUpload }}>
+                 <i className="fas fa-cloud-upload-alt"></i> {fileNameTwo || "Choose File"}
+               </label>
+               <input id="file-input-2" type="file" name="file" onChange={handleFileInputChangeTwo} />
+               <button type="submit" className="file-input" style={{ backgroundColor: buttonColorSecondFileUpload }} disabled={!selectedFileTwo}>Upload</button>      
+             </form>
+             <canvas id="matrix-canvas-two"></canvas>
+             <div>
+             <button type="submit" onClick={() => handleComputeLuFactorization()}>
+               Compute
+             </button>
+             </div>
+            </div>
           )}
           {jacobi_called && (
-            <div>
-              <p>Solve the system using the Jacobi method</p>
-              <button type="submit">Compute</button>
+             <div>
+             <label for="add">Upload B vector to solve the system using Jacobi Method</label>
+             <form onSubmit={handleSubmitSecondMatrix}>
+             <label htmlFor="file-input-2" className={isValidMatrixTwo ? "file-input" : "file-input file-invalid"} style={{ backgroundColor: buttonColorSecondFileUpload }}>
+                 <i className="fas fa-cloud-upload-alt"></i> {fileNameTwo || "Choose File"}
+               </label>
+               <input id="file-input-2" type="file" name="file" onChange={handleFileInputChangeTwo} />
+               <button type="submit" className="file-input" style={{ backgroundColor: buttonColorSecondFileUpload }} disabled={!selectedFileTwo}>Upload</button>      
+             </form>
+             <canvas id="matrix-canvas-two"></canvas>
+             <div>
+             <button type="submit" onClick={() => handleComputJacobiMethod()}>
+               Compute
+             </button>
+             </div>
             </div>
           )}
           {gauss_siedel_called && (
-            <div>
-              <p>Solve the system using Gauss Siedel</p>
-              <button type="submit">Compute</button>
+             <div>
+             <label for="add">Upload B vector to solve the system using Gauss Siedel</label>
+             <form onSubmit={handleSubmitSecondMatrix}>
+             <label htmlFor="file-input-2" className={isValidMatrixTwo ? "file-input" : "file-input file-invalid"} style={{ backgroundColor: buttonColorSecondFileUpload }}>
+                 <i className="fas fa-cloud-upload-alt"></i> {fileNameTwo || "Choose File"}
+               </label>
+               <input id="file-input-2" type="file" name="file" onChange={handleFileInputChangeTwo} />
+               <button type="submit" className="file-input" style={{ backgroundColor: buttonColorSecondFileUpload }} disabled={!selectedFileTwo}>Upload</button>      
+             </form>
+             <canvas id="matrix-canvas-two"></canvas>
+             <div>
+             <button type="submit" onClick={() => handleComputeGaussSidel()}>
+               Compute
+             </button>
+             </div>
             </div>
           )}
         </div>

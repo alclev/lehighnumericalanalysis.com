@@ -15,20 +15,17 @@ export function drawMatrix(matrixData, canvas, ctx) {
     for (let j = 0; j < num_cols; j++) {
       // Draw a cell with a border
       ctx.beginPath();
-      ctx.rect(j * 50, i * 50, 50, 50);
+      ctx.rect(i * 50, j * 50, 50, 50);
       ctx.stroke();
 
       // Display the element of the matrix in the cell
       ctx.font = '24px Arial';
       ctx.fillStyle = 'grey';
       ctx.textAlign = 'center';
-      ctx.fillText(data[i * num_cols + j], j * 50 + 25, i * 50 + 35);
+      ctx.fillText(data[i * num_cols + j], i * 50 + 25, j * 50 + 35);
     }
   }
 }
-
-
-
 
   // Returns true or false depending on whether matrix is correct format
 export function parseMatrix(matrix) {
