@@ -1,29 +1,12 @@
 import axios from 'axios';
-// const axios = require('axios');
-
-// const instance = axios.create({
-//   baseURL: 'http://localhost:8080',
-//   timeout: 1000,
-//   headers: {'Content-Type': 'text/html; charset=utf-8'
-// }
-
-// });
-// const socket = new WebSocket('ws://127.0.0.1:8080');
 
 export const handleAddition = function (selectedFile, selectedFile2) {
   //data to send to backend
   const data = {
     operation: 0x10,
-    args: 2,
-    matrixData: selectedFile + '0xDEADBEEF' + selectedFile2,
+    exp_resp: 2,
+    matrixData: selectedFile + 'XXXXXXXX' + selectedFile2 + 'XXXXXXXX',
   };
-  // socket.onopen = (event) => {
-  //   console.log('connected');
-  //   socket.send(JSON.stringify(data));
-  // }
-  // socket.onmessage = (event) => {
-  //   console.log(event.data);
-  // }
 
   const options = {
     headers:{ 
