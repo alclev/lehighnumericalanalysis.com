@@ -1,12 +1,12 @@
 import axios from 'axios';
-export const DELIMITER = '0xDEADBEEF';
+export const DELIMITER = 'XXXXXXXX';
 
 export const handleAddition = function (matrixA, matrixB) {
   //data to send to backend
   const data = {
     operation: 0x10,
     args: 2,
-    matrixData: selectedFile + '0xDEADBEEF' + selectedFile2,
+    matrixData: selectedFile + DELIMITER + selectedFile2,
   };
 
   const options = {
@@ -16,6 +16,7 @@ export const handleAddition = function (matrixA, matrixB) {
   axios.post('http://lehighnumericalanalysis.com/ws', data, options)
     .then(function (response) {
       console.log(response);
+      // TODO: display new matrix from the response
     })
     .catch((error) => {
       console.error('Error making POST request:', error);
