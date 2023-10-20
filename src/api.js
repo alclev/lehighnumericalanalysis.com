@@ -6,7 +6,7 @@ export const handleAddition = function (matrixA, matrixB) {
   const data = {
     operation: 0x10,
     args: 2,
-    matrixData: selectedFile + DELIMITER + selectedFile2,
+    matrixData: matrixA + DELIMITER + matrixB,
   };
 
   const options = {
