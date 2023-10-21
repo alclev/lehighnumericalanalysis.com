@@ -3,6 +3,7 @@ import { parseMatrix, drawMatrix, buttonData} from './dataPackaging';
 import './demo.css';
 import {handleAddition, handleMultiply, handleTranspose, handleInverse, handleGaussElimination,
 handleLuFactorization, handleJacobiMethod, handleGaussSidel} from './api';
+import { type } from '@testing-library/user-event/dist/type';
 //import './api.js'
 
 function Demo() {
@@ -152,6 +153,9 @@ function Demo() {
   //when a file is submited, validate it and display it
   const handleComputeAddition = (event) => {
     const result = handleAddition(matrixData, matrixDataTwo);
+    if(typeof result == 'string') {
+      console.log('Matrix data is a string in handleComputeAddition');
+    }
     setGotResult(true);
     const canvas = document.getElementById('matrix-canvas-result');
     const ctx = canvas.getContext('2d');
