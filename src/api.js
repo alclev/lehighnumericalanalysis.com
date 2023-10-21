@@ -16,7 +16,6 @@ export const handleAddition = function (matrixA, matrixB) {
   axios.post('http://lehighnumericalanalysis.com/ws', data, options)
     .then(function (response) {
       console.log(response);
-      const json_resp = JSON.parse(response);
       return json_resp.data;
     })
     .catch((error) => {
