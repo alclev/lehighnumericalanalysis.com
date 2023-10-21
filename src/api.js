@@ -1,3 +1,4 @@
+import { type } from '@testing-library/user-event/dist/type';
 import axios from 'axios';
 export const DELIMITER = 'XXXXXXXX';
 
@@ -17,6 +18,15 @@ export const handleAddition = function (matrixA, matrixB) {
     .then(function (response) {
       console.log(response);
       console.log(response.data.data);
+      if(typeof response.data.data == 'string') {
+        console.log('Matrix data is a string');
+      }
+      else if(typeof response.data.data == 'object') {
+        console.log('Matrix data is an object');
+      }
+      else {
+        console.log('Matrix data is neither a string nor an object');
+      }
       return JSON.stringify(response.data.data);
     })
     .catch((error) => {

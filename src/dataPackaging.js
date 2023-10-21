@@ -1,15 +1,6 @@
 export var dim_LIMIT = 25;
 
 export function drawMatrix(matrixData, canvas, ctx) {
-  // Check type of matrixData
-  if(typeof matrixData == 'string') {
-    console.log('Matrix data is a string');
-  } else if(typeof matrixData == 'object') {
-    console.log('Matrix data is an object');
-  } else {
-    console.log('Matrix data is neither a string nor an object');
-  }
-  
   const dimensions = matrixData.split('\n')[0];
   const num_rows = parseInt(dimensions.split(',')[0]);
   const num_cols = parseInt(dimensions.split(',')[1]);
