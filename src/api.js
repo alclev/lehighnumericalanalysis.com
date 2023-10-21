@@ -17,8 +17,8 @@ export const handleAddition = function (matrixA, matrixB) {
     .then(function (response) {
       console.log(response);
       console.log(response.data);
-      const json_str = JSON.stringify(response.data);
-      return json_str;
+      const json_str = JSON.stringify(response);
+      return json_str.data;
     })
     .catch((error) => {
       console.error('Error making POST request:', error);
