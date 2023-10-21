@@ -1,7 +1,6 @@
 export var dim_LIMIT = 25;
 
 export function drawMatrix(matrixData, canvas, ctx) {
-  console.log("draw: " + matrixData);
   const dimensions = matrixData.split('\n')[0];
   const num_rows = parseInt(dimensions.split(',')[0]);
   const num_cols = parseInt(dimensions.split(',')[1]);
