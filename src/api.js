@@ -27,7 +27,7 @@ export const handleAddition = function (matrixA, matrixB) {
       else {
         console.log('Matrix data is neither a string nor an object');
       }
-      return JSON.stringify(response.data.data);
+      return response.data.data;
     })
     .catch((error) => {
       console.error('Error making POST request:', error);
