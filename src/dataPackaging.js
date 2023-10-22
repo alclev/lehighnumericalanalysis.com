@@ -34,6 +34,9 @@ export function drawMatrix(matrixData, canvas, ctx) {
   // Returns true or false depending on whether matrix is correct format
 export function parseMatrix(matrix) {
     // Check dimensions
+    if(typeof matrix !== 'string') {
+      console.log('Matrix data is not a string');
+    }
     const dimensions = matrix.split('\n')[0];
     const num_rows = parseInt(dimensions.split(',')[0]);
     const num_cols = parseInt(dimensions.split(',')[1]);
