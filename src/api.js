@@ -14,7 +14,9 @@ export const handleAddition = function (matrixA, matrixB) {
     headers:{ 
       'Content-Type': 'application/json',}
   }
-  axios.post('http://lehighnumericalanalysis.com/ws', data, options)
+  /* return the entire promise */
+  return axios
+    .post('http://lehighnumericalanalysis.com/ws', data, options)
     .then(function (response) {
       console.log(response);
       console.log(response.data.data);

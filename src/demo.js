@@ -151,16 +151,20 @@ function Demo() {
   };
 
   //when a file is submited, validate it and display it
-  const handleComputeAddition = (event) => {
-    const result = handleAddition(matrixData, matrixDataTwo);
-    console.log(result);
-    if(parseMatrix(result)){
-      setGotResult(true);
-      const canvas = document.getElementById('matrix-canvas-result');
-      const ctx = canvas.getContext('2d');
-      drawMatrix(result, canvas, ctx);
-    }else{
-      alert("The result is not a valid matrix");
+  const handleComputeAddition = async (event) => {
+    try{
+      const result = await handleAddition(matrixData, matrixDataTwo);
+      console.log(result);
+      if(parseMatrix(result)){
+        setGotResult(true);
+        const canvas = document.getElementById('matrix-canvas-result');
+        const ctx = canvas.getContext('2d');
+        drawMatrix(result, canvas, ctx);
+      }else{
+        alert("The result is not a valid matrix");
+      }
+    } catch (error) {
+      console.log("Error in handleComputeAddition: ", error);
     }
   };
 
