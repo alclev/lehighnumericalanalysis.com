@@ -152,7 +152,7 @@ function Demo() {
 
   //when a file is submited, validate it and display it
   const handleComputeAddition = (event) => {
-    const result = String(handleAddition(matrixData, matrixDataTwo));
+    const result = handleAddition(matrixData, matrixDataTwo);
     console.log(result);
     if(parseMatrix(result)){
       setGotResult(true);
