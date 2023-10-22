@@ -153,13 +153,10 @@ function Demo() {
   //when a file is submited, validate it and display it
   const handleComputeAddition = (event) => {
     const result = handleAddition(matrixData, matrixDataTwo);
-    if(typeof result == 'string') {
-      console.log('Matrix data is a string in handleComputeAddition');
-    }
     setGotResult(true);
     const canvas = document.getElementById('matrix-canvas-result');
     const ctx = canvas.getContext('2d');
-    drawMatrix(result, canvas, ctx);
+    drawMatrix(result.toString(), canvas, ctx);
     //set_all_operations_false();
   };
 

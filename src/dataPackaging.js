@@ -2,8 +2,7 @@ export var dim_LIMIT = 25;
 
 export function drawMatrix(matrixData, canvas, ctx) {
   if(typeof matrixData !== 'string') {
-    console.error('Matrix data is not a string');
-    return;
+    throw new Error('Matrix data is not a string');
   }
   const dimensions = matrixData.split('\n')[0];
   const num_rows = parseInt(dimensions.split(',')[0]);
