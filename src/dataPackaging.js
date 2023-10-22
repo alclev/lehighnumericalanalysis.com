@@ -34,12 +34,10 @@ export function drawMatrix(matrixData, canvas, ctx) {
   // Returns true or false depending on whether matrix is correct format
 export function parseMatrix(matrix) {
     // Check dimensions
-    if(typeof matrix !== 'string') {
-      console.log('Matrix data is not a string');
-    }
     const dimensions = matrix.split('\n')[0];
     const num_rows = parseInt(dimensions.split(',')[0]);
     const num_cols = parseInt(dimensions.split(',')[1]);
+    console.log(num_rows, num_cols);
     if (isNaN(num_rows) || isNaN(num_cols)) {
       return false;
     }
@@ -53,6 +51,7 @@ export function parseMatrix(matrix) {
       return false;
     }
     for (let i = 0; i < elements_array.length; i++) {
+      console.log(elements_array[i]);
       if (isNaN(parseInt(elements_array[i]))) {
         return false;
       }
