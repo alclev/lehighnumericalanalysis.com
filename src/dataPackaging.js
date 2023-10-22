@@ -4,6 +4,7 @@ export function drawMatrix(matrixData, canvas, ctx) {
   if(typeof matrixData !== 'string') {
     throw new Error('Matrix data is not a string');
   }
+  console.log(matrixData);
   const dimensions = matrixData.split('\n')[0];
   const num_rows = parseInt(dimensions.split(',')[0]);
   const num_cols = parseInt(dimensions.split(',')[1]);

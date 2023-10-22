@@ -153,22 +153,14 @@ function Demo() {
   //when a file is submited, validate it and display it
   const handleComputeAddition = (event) => {
     const result = String(handleAddition(matrixData, matrixDataTwo));
-    if(typeof result == 'string') {
-      console.log("string");
-    }else if(typeof result == 'object'){
-      console.log("object");
-    }else if(typeof result == 'number'){
-      console.log("number");
-    }else if(typeof result == 'boolean'){
-      console.log("boolean");
+    if(parseMatrix(result)){
+      setGotResult(true);
+      const canvas = document.getElementById('matrix-canvas-result');
+      const ctx = canvas.getContext('2d');
+      drawMatrix(result, canvas, ctx);
     }else{
-      console.log("other");
+      alert("The result is not a valid matrix");
     }
-    setGotResult(true);
-    const canvas = document.getElementById('matrix-canvas-result');
-    const ctx = canvas.getContext('2d');
-    drawMatrix(result, canvas, ctx);
-    //set_all_operations_false();
   };
 
   //when a file is submited, validate it and display it
