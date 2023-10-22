@@ -152,7 +152,7 @@ function Demo() {
 
   //when a file is submited, validate it and display it
   const handleComputeAddition = (event) => {
-    const result = handleAddition(matrixData, matrixDataTwo);
+    const result = String(handleAddition(matrixData, matrixDataTwo));
     if(typeof result == 'string') {
       console.log("string");
     }else if(typeof result == 'object'){
@@ -167,7 +167,7 @@ function Demo() {
     setGotResult(true);
     const canvas = document.getElementById('matrix-canvas-result');
     const ctx = canvas.getContext('2d');
-    drawMatrix(result.toString(), canvas, ctx);
+    drawMatrix(result, canvas, ctx);
     //set_all_operations_false();
   };
 
