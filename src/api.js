@@ -3,7 +3,9 @@ export const DELIMITER = 'XXXXXXXX';
 
 /* Steps to scale functions: 
 
-Add functions 
+Add implement functions in 
+FRONTEND: api.js demo.js 
+BACKEND: map_func
 
 */
 
