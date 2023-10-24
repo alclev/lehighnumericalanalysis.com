@@ -25,9 +25,9 @@ export function drawMatrix(matrixData, canvas, ctx) {
       ctx.stroke();
 
       // Display the element of the matrix in the cell
-      ctx.font = '20px Arial';
+      ctx.font = '24px Arial';
       ctx.fillStyle = 'grey';
-      ctx.textAlign = 'middle';
+      ctx.textAlign = 'center';
       ctx.fillText(data[i * num_cols + j], i * BOX_SIZE + BOX_SIZE / 2, j * BOX_SIZE + BOX_SIZE / 2);
     }
   }
