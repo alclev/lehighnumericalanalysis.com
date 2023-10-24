@@ -1,7 +1,6 @@
 export var dim_LIMIT = 20;
 
 export function drawMatrix(matrixData, canvas, ctx) {
-  let BOX_SIZE = 100;
   if(typeof matrixData !== 'string') {
     throw new Error('Matrix data is not a string');
   }
@@ -12,22 +11,24 @@ export function drawMatrix(matrixData, canvas, ctx) {
   const elements = matrixData.split('\n')[1];
   const data = elements.split(',');
 
-  canvas.width = num_rows * 50;
-  canvas.height = num_cols * 50;
+  let BOX_SIZE = 100;
+
+  canvas.width = num_rows * BOX_SIZE;
+  canvas.height = num_cols * BOX_SIZE;
 
   // Iterate through the rows and columns of the matrix
   for (let i = 0; i < num_rows; i++) {
     for (let j = 0; j < num_cols; j++) {
       // Draw a cell with a border
       ctx.beginPath();
-      ctx.rect(i * 50, j * 50, BOX_SIZE, BOX_SIZE);
+      ctx.rect(i * BOX_SIZE, j * BOX_SIZE, BOX_SIZE, BOX_SIZE);
       ctx.stroke();
 
       // Display the element of the matrix in the cell
-      ctx.font = '24px Arial';
+      ctx.font = '20px Arial';
       ctx.fillStyle = 'grey';
-      ctx.textAlign = 'center';
-      ctx.fillText(data[i * num_cols + j], i * 50 + 25, j * 50 + 35);
+      ctx.textAlign = 'middle';
+      ctx.fillText(data[i * num_cols + j], i * BOX_SIZE + BOX_SIZE / 2, j * BOX_SIZE + BOX_SIZE / 2);
     }
   }
 }
