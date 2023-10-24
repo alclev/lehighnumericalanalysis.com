@@ -1,6 +1,12 @@
 import axios from 'axios';
 export const DELIMITER = 'XXXXXXXX';
 
+/* Steps to scale functions: 
+
+Add functions 
+
+*/
+
 export const handleAddition = function (matrixA, matrixB) {
   //data to send to backend
   const data = {
