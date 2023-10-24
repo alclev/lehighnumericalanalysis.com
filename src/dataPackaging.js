@@ -20,7 +20,7 @@ export function drawMatrix(matrixData, canvas, ctx) {
     for (let j = 0; j < num_cols; j++) {
       // Draw a cell with a border
       ctx.beginPath();
-      ctx.rect(i * BOX_SIZE, j * BOX_SIZE, BOX_SIZE, BOX_SIZE);
+      ctx.rect(i * 50, j * 50, BOX_SIZE, BOX_SIZE);
       ctx.stroke();
 
       // Display the element of the matrix in the cell
