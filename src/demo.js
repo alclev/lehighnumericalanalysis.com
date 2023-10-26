@@ -199,13 +199,16 @@ function Demo() {
   };
 
   //when a file is submited, validate it and display it
-  const handleComputeInverse = (event) => {
-    const result = handleInverse(matrixData);
-    setGotResult(true);
-    const canvas = document.getElementById('matrix-canvas-result');
-    const ctx = canvas.getContext('2d');
-    drawMatrix(result, canvas, ctx);
-    //set_all_operations_false();
+  const handleComputeInverse = async(event) => {
+    try{
+      const result = await handleInverse(matrixData);
+      setGotResult(true);
+      const canvas = document.getElementById('matrix-canvas-result');
+      const ctx = canvas.getContext('2d');
+      drawMatrix(result, canvas, ctx);
+    } catch (error) {
+      console.log("Error in handleComputeAddition: ", error);
+    }
   };
 
   //when a file is submited, validate it and display it
