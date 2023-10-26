@@ -3,7 +3,6 @@ import { parseMatrix, drawMatrix, buttonData} from './dataPackaging';
 import './demo.css';
 import {handleAddition, handleMultiply, handleTranspose, handleInverse, handleGaussElimination,
 handleLuFactorization, handleJacobiMethod, handleGaussSidel} from './api';
-import { type } from '@testing-library/user-event/dist/type';
 //import './api.js'
 
 function Demo() {
