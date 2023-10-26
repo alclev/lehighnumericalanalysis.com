@@ -60,12 +60,42 @@ export const handleMultiply = function (matrixA, scalar) {
     });
 };
 
+const sendRequest = function (data) {
+  const options = {
+    headers:{ 
+      'Content-Type': 'application/json',}
+  }
+  /* return the entire promise */
+  return axios
+    .post('http://lehighnumericalanalysis.com/ws', data, options)
+    .then(function (response) {
+      console.log(response);
+      console.log(response.data.data);
+      return response.data.data;
+    })
+    .catch((error) => {
+      console.error('Error making POST request:', error);
+    });
+};
+
 export const handleTranspose = function (matrixA) {
-  
+  //data to send to backend
+  const data = {
+    operation: 0x12,
+    args: 2,
+    data: matrixA + DELIMITER,
+  };
+  return sendRequest(data);
 };
 
 export const handleInverse = function (matrixA) {
- 
+   //data to send to backend
+   const data = {
+    operation: 0x13,
+    args: 2,
+    data: matrixA + DELIMITER,
+  };
+  return sendRequest(data);
 };
 
 export const handleGaussElimination = function (matrixA,vectorB) {

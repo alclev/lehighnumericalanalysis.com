@@ -186,13 +186,16 @@ function Demo() {
   };
 
   //when a file is submited, validate it and display it
-  const handleComputeTranspose = (event) => {
-    const result = handleTranspose(matrixData);
-    setGotResult(true);
-    const canvas = document.getElementById('matrix-canvas-result');
-    const ctx = canvas.getContext('2d');
-    drawMatrix(result, canvas, ctx);
-    //set_all_operations_false();
+  const handleComputeTranspose = async (event) => {
+    try{
+      const result = await handleTranspose(matrixData);
+      setGotResult(true);
+      const canvas = document.getElementById('matrix-canvas-result');
+      const ctx = canvas.getContext('2d');
+      drawMatrix(result, canvas, ctx);
+    } catch (error) {
+      console.log("Error in handleComputeAddition: ", error);
+    }
   };
 
   //when a file is submited, validate it and display it
