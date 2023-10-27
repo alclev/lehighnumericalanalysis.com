@@ -17,10 +17,10 @@ function App() {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/demo">Demo</Link>
+                <Link to="/demo">Dense Demo</Link>
               </li>
               <li>
-                <Link to="/sparse">Sparse</Link>
+                <Link to="/sparse">Sparse Demo</Link>
               </li>
               <li>
                 <Link to="/download">Download</Link>
