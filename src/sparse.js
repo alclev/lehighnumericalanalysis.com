@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { parseMatrix, drawMatrix, buttonData, drawSparseMatrix} from './dataPackaging';
+import { buttonData, drawSparseMatrix} from './dataPackaging';
 import './demo.css';
 import {handleAddition, handleMultiply, handleTranspose, handleInverse, handleGaussElimination,
 handleLuFactorization, handleJacobiMethod, handleGaussSidel} from './api';
@@ -136,14 +136,15 @@ const handleSubmitSecondMatrix = (event) => {
   reader.readAsText(selectedFileTwo);
   reader.onload = (event) => {
     const matrixData = event.target.result;
-    const isValid = parseMatrix(matrixData);
+    //const isValid = parseMatrix(matrixData);
+    const isValid = true;
     setButtonColorSecondFileUpload(isValid ? "#4CAF50" : "#CCCCCC");
     setIsValidMatrixTwo(isValid);
     if (isValid) {
       setMatrixDataTwo(matrixData);
       const canvas = document.getElementById('matrix-canvas-two');
       const ctx = canvas.getContext('2d');
-      drawMatrix(matrixData, canvas, ctx);
+      drawSparseMatrix(matrixData, canvas, ctx);
     }
   };
 };
@@ -153,11 +154,11 @@ const handleComputeAddition = async (event) => {
   try{
     const result = await handleAddition(matrixData, matrixDataTwo);
     console.log(result);
-    if(parseMatrix(result)){
+    if(true){
       setGotResult(true);
       const canvas = document.getElementById('matrix-canvas-result');
       const ctx = canvas.getContext('2d');
-      drawMatrix(result, canvas, ctx);
+      drawSparseMatrix(result, canvas, ctx);
     }else{
       alert("The result is not a valid matrix");
     }
@@ -171,11 +172,11 @@ const handleComputeScalar = async (event) => {
   try{
     const result = await handleMultiply(matrixData, scalar);
     console.log(result);
-    if(parseMatrix(result)){
+    if(true){
       setGotResult(true);
       const canvas = document.getElementById('matrix-canvas-result');
       const ctx = canvas.getContext('2d');
-      drawMatrix(result, canvas, ctx);
+      drawSparseMatrix(result, canvas, ctx);
     }else{
       alert("The result is not a valid matrix");
     }
@@ -191,7 +192,7 @@ const handleComputeTranspose = async (event) => {
     setGotResult(true);
     const canvas = document.getElementById('matrix-canvas-result');
     const ctx = canvas.getContext('2d');
-    drawMatrix(result, canvas, ctx);
+    drawSparseMatrix(result, canvas, ctx);
   } catch (error) {
     console.log("Error in handleComputeAddition: ", error);
   }
@@ -204,7 +205,7 @@ const handleComputeInverse = async(event) => {
     setGotResult(true);
     const canvas = document.getElementById('matrix-canvas-result');
     const ctx = canvas.getContext('2d');
-    drawMatrix(result, canvas, ctx);
+    drawSparseMatrix(result, canvas, ctx);
   } catch (error) {
     console.log("Error in handleComputeAddition: ", error);
   }
@@ -216,7 +217,7 @@ const handleComputeGaussElimination = (event) => {
   setGotResult(true);
   const canvas = document.getElementById('matrix-canvas-result');
   const ctx = canvas.getContext('2d');
-  drawMatrix(result, canvas, ctx);
+  drawSparseMatrix(result, canvas, ctx);
   //set_all_operations_false();
 };
 
@@ -226,7 +227,7 @@ const handleComputeLuFactorization = (event) => {
   setGotResult(true);
   const canvas = document.getElementById('matrix-canvas-result');
   const ctx = canvas.getContext('2d');
-  drawMatrix(result, canvas, ctx);
+  drawSparseMatrix(result, canvas, ctx);
   //set_all_operations_false();
 };
 
@@ -236,7 +237,7 @@ const handleComputJacobiMethod = (event) => {
   setGotResult(true);
   const canvas = document.getElementById('matrix-canvas-result');
   const ctx = canvas.getContext('2d');
-  drawMatrix(result, canvas, ctx);
+  drawSparseMatrix(result, canvas, ctx);
   //set_all_operations_false();
 };
 
@@ -246,7 +247,7 @@ const handleComputeGaussSidel = (event) => {
   setGotResult(true);
   const canvas = document.getElementById('matrix-canvas-result');
   const ctx = canvas.getContext('2d');
-  drawMatrix(result, canvas, ctx);
+  drawSparseMatrix(result, canvas, ctx);
   //set_all_operations_false();
 };
 
