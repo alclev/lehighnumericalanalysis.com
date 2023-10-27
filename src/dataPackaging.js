@@ -95,6 +95,56 @@ export const packet = {
   'matrix': '',
 }
 
+export function drawSparseMatrix(matrixData, canvas, ctx) {
+  if (typeof matrixData !== 'string') {
+    throw new Error('Matrix data is not a string');
+  }
 
+  const lines = matrixData.split('\n');
 
+  // Find the number of rows and columns while skipping comments
+  let num_rows, num_cols;
+  let data = {}; // Use an object to store sparse data
 
+  for (let line of lines) {
+    if (line.startsWith('%')) {
+      // Skip comments
+      continue;
+    } else if (!num_rows) {
+      // Parse dimensions from the first non-comment line
+      const dimensions = line.split(' ');
+      num_rows = parseInt(dimensions[0]);
+      num_cols = parseInt(dimensions[1]);
+    } else {
+      // Parse data
+      const elements = line.split(' ');
+      const row = parseInt(elements[0]) - 1; // Adjust for 1-based indexing
+      const col = parseInt(elements[1]) - 1; // Adjust for 1-based indexing
+      const value = parseFloat(elements[2]).toFixed(2); // Limit to 2 decimal points
+      data[`${row}-${col}`] = value;
+    }
+  }
+
+  let BOX_SIZE = 100;
+
+  canvas.width = num_cols * BOX_SIZE;
+  canvas.height = num_rows * BOX_SIZE;
+
+  // Iterate through the rows and columns of the matrix
+  for (let i = 0; i < num_rows; i++) {
+    for (let j = 0; j < num_cols; j++) {
+      // Draw a cell with a border
+      ctx.beginPath();
+      ctx.rect(j * BOX_SIZE, i * BOX_SIZE, BOX_SIZE, BOX_SIZE);
+      ctx.stroke();
+
+      // Display the element of the matrix in the cell
+      ctx.font = '24px Arial';
+      ctx.fillStyle = 'grey';
+      ctx.textAlign = 'center';
+
+      const value = data[`${i}-${j}`];
+      ctx.fillText(value || '0.00', j * BOX_SIZE + BOX_SIZE / 2, i * BOX_SIZE + BOX_SIZE / 2);
+    }
+  }
+}

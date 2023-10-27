@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route, Link} from 'react-router-dom';
 import Home from './home';
 import Demo from './demo';
+import Sparse from './sparse'
 import Download from './download';
 import About from './about';
 
@@ -19,6 +20,9 @@ function App() {
                 <Link to="/demo">Demo</Link>
               </li>
               <li>
+                <Link to="/sparse">Sparse</Link>
+              </li>
+              <li>
                 <Link to="/download">Download</Link>
               </li>
               <li>
@@ -30,6 +34,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/demo" element={<Demo />} />
+            <Route exact path="/sparse" element={<Sparse/>} />
             <Route exact path="/download" element={<Download />} />
             <Route path="/about" element={<About />} />
           </Routes>
