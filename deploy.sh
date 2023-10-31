@@ -5,4 +5,4 @@ git add .
 git commit 
 git push
 
-scp -r build admin@131.106.103.102/:/var/www/
+scp -r build ubuntu@lehighnumericalanalysis.com:/var/www/
