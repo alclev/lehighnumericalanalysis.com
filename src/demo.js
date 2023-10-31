@@ -212,43 +212,55 @@ function Demo() {
   };
 
   //when a file is submited, validate it and display it
-  const handleComputeGaussElimination = (event) => {
-    const result = handleGaussElimination(matrixData,matrixDataTwo);
-    setGotResult(true);
-    const canvas = document.getElementById('matrix-canvas-result');
-    const ctx = canvas.getContext('2d');
-    drawMatrix(result, canvas, ctx);
-    //set_all_operations_false();
+  const handleComputeGaussElimination = async (event) => {
+    try{
+      const result = await handleGaussElimination(matrixData,matrixDataTwo);
+      setGotResult(true);
+      const canvas = document.getElementById('matrix-canvas-result');
+      const ctx = canvas.getContext('2d');
+      drawMatrix(result, canvas, ctx);
+    } catch (error) {
+      console.log("Error in handleComputeAddition: ", error);
+    }
   };
 
   //when a file is submited, validate it and display it
-  const handleComputeLuFactorization = (event) => {
-    const result = handleLuFactorization(matrixData,matrixDataTwo);
-    setGotResult(true);
-    const canvas = document.getElementById('matrix-canvas-result');
-    const ctx = canvas.getContext('2d');
-    drawMatrix(result, canvas, ctx);
-    //set_all_operations_false();
+  const handleComputeLuFactorization = async (event) => {
+    try{
+      const result = await handleLuFactorization(matrixData);
+      setGotResult(true);
+      const canvas = document.getElementById('matrix-canvas-result');
+      const ctx = canvas.getContext('2d');
+      drawMatrix(result, canvas, ctx);
+    } catch (error) {
+      console.log("Error in handleComputeAddition: ", error);
+    }
   };
 
   //when a file is submited, validate it and display it
-  const handleComputJacobiMethod = (event) => {
-    const result = handleJacobiMethod(matrixData,matrixDataTwo);
-    setGotResult(true);
-    const canvas = document.getElementById('matrix-canvas-result');
-    const ctx = canvas.getContext('2d');
-    drawMatrix(result, canvas, ctx);
-    //set_all_operations_false();
+  const handleComputJacobiMethod = async (event) => {
+    try{
+      const result = await handleJacobiMethod(matrixData, matrixDataTwo);
+      setGotResult(true);
+      const canvas = document.getElementById('matrix-canvas-result');
+      const ctx = canvas.getContext('2d');
+      drawMatrix(result, canvas, ctx);
+    } catch (error) {
+      console.log("Error in handleComputeAddition: ", error);
+    }
   };
 
   //when a file is submited, validate it and display it
-  const handleComputeGaussSidel = (event) => {
-    const result = handleGaussSidel(matrixData,matrixDataTwo);
-    setGotResult(true);
-    const canvas = document.getElementById('matrix-canvas-result');
-    const ctx = canvas.getContext('2d');
-    drawMatrix(result, canvas, ctx);
-    //set_all_operations_false();
+  const handleComputeGaussSidel = async (event) => {
+    try{
+      const result = await handleGaussSidel(matrixData, matrixDataTwo);
+      setGotResult(true);
+      const canvas = document.getElementById('matrix-canvas-result');
+      const ctx = canvas.getContext('2d');
+      drawMatrix(result, canvas, ctx);
+    } catch (error) {
+      console.log("Error in handleComputeAddition: ", error);
+    }
   };
 
   return (

@@ -2,7 +2,7 @@ timestamp=$(date "+%Y-%m-%d %H:%M:%S")
 
 npm run build
 git add .
-git commit -m "Deploy $timestamp"
+git commit 
 git push
 
-scp -r build ubuntu@lehighnumericalanalysis.com:/var/www/
+scp -r build admin@131.106.103.102/:/var/www/
