@@ -137,3 +137,5 @@ export const handleGaussSidel = function (matrixA,vectorB) {
   };
   return sendRequest(data);
 };
+
+//SPARSE FUNCTION

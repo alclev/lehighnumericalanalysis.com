@@ -160,9 +160,9 @@ const handleComputeAddition = async (event) => {
 };
 
 //when a file is submited, validate it and display it
-const handleComputeScalar = async (event) => {
+const handleComputeMatrix = async (event) => {
   try{
-    const result = await handleMultiply(matrixData, scalar);
+    const result = await handleAddition(matrixData, matrixDataTwo);
     console.log(result);
     if(true){
       setGotResult(true);
@@ -293,18 +293,22 @@ return (
         )}
         {mult_called && (
           <div>
-            <label htmlFor="mult">Multiply a matrix by a scalar:</label>
-            <p>Enter a scalar</p>
-            <input
-              className="mult-input"
-              type="number"
-              value={scalar}
-              onChange={(e) => setScalar(e.target.value)}
-            />
-            <button type="submit" onClick={() => handleComputeScalar()}>
-              Compute
-            </button>
+          <label for="add">Upload a matrix to add:</label>
+          <form onSubmit={handleSubmitSecondMatrix}>
+          <label htmlFor="file-input-2" className={isValidMatrixTwo ? "file-input" : "file-input file-invalid"} style={{ backgroundColor: buttonColorSecondFileUpload }}>
+              <i className="fas fa-cloud-upload-alt"></i> {fileNameTwo || "Choose File"}
+            </label>
+            <input id="file-input-2" type="file" name="file" onChange={handleFileInputChangeTwo} />
+            <button type="submit" className="file-input" style={{ backgroundColor: buttonColorSecondFileUpload }} disabled={!selectedFileTwo}>Upload</button>      
+          </form>
+          <canvas id="matrix-canvas-two"></canvas>
+          <div>
+          <button type="submit" onClick={() => handleComputeMatrix()}>
+            Compute
+          </button>
+
           </div>
+        </div>
         )}
         {transpose_called && (
           <div>
