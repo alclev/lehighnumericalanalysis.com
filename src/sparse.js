@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { buttonData, drawSparseMatrix} from './dataPackaging';
+import { sparseButtonData, drawSparseMatrix} from './dataPackaging';
 import './demo.css';
 import {handleAddition, handleMultiply, handleTranspose, handleInverse, handleGaussElimination,
 handleLuFactorization, handleJacobiMethod, handleGaussSidel} from './api';
@@ -9,7 +9,6 @@ const [selectedFile, setSelectedFile] = useState(null);
 const [selectedFileTwo, setSelectedFileTwo] = useState(null);
 const [matrixData, setMatrixData] = useState(null);
 const [matrixDataTwo, setMatrixDataTwo] = useState(null);
-const [matrixDataResult, setMatrixDataResult] = useState(null);
 const [gotResult, setGotResult] = useState(null);
 const [filename, setFilename] = useState(null);
 const [fileNameTwo, setfileNameTwo] = useState(null);
@@ -18,76 +17,69 @@ const [buttonColorSecondFileUpload, setButtonColorSecondFileUpload] = useState("
 const [isValidMatrix, setIsValidMatrix] = useState(true); // assuming it is initially valid
 const [isValidMatrixTwo, setIsValidMatrixTwo] = useState(true); // assuming it is initially valid
 const [buttons, setButtons] = useState([]);
-const [add_called, setAdd_called] = useState(false);
-const [mult_called, setMult_called] = useState(false);
+const [add_called, setSparseAdd_called] = useState(false);
+const [mult_called, setSparseMatrixMult_called] = useState(false);
 const [scalar, setScalar] = useState('');
-const [transpose_called, setTranspose_called] = useState(false);
-const [inverse_called, setInverse_called] = useState(false);
-const [gauss_called, setGauss_called] = useState(false);
-const [luFact_called, setLuFact_called] = useState(false);
-const [jacobi_called, setJacobi_called] = useState(false);
-const [gauss_siedel_called, setGauss_siedel_called] = useState(false);
+const [transpose_called, setSparseTranspose_called] = useState(false);
+const [inverse_called, setSparseApproximateInverse_called] = useState(false);
+const [gauss_called, setSparseGauss_called] = useState(false);
+const [luFact_called, setSparseLuFact_called] = useState(false);
+const [jacobi_called, setSparseJacobi_called] = useState(false);
 
 //set all of the operations to false
 //we have to set all of them to false because another one might be active, resulting in two showing up
 function set_all_operations_false(){
-  setAdd_called(false);
-  setMult_called(false);
-  setTranspose_called(false);
-  setInverse_called(false);
-  setGauss_called(false);
-  setLuFact_called(false);
-  setJacobi_called(false);
-  setGauss_siedel_called(false);
+  setSparseAdd_called(false);
+  setSparseMatrixMult_called(false);
+  setSparseTranspose_called(false);
+  setSparseApproximateInverse_called(false);
+  setSparseGauss_called(false);
+  setSparseLuFact_called(false);
+  setSparseJacobi_called(false);
   setGotResult(false);
 }
 //when we get an add, set all the other operations to false
-function add_handler(){
+function sparse_add_handler(){
   set_all_operations_false()
-  setAdd_called(true);
+  setSparseAdd_called(true);
 }
-function mult_handler(){
+function sprase_matrix_mult_handler(){
   set_all_operations_false()
-  setMult_called(true);
+  setSparseMatrixMult_called(true);
 }
-function transpose_handler(){
+function sparse_transpose_handler(){
   set_all_operations_false()
-  setTranspose_called(true);
+  setSparseTranspose_called(true);
 }
-function inverse_handler(){
+function sparse_approximate_inverse_handler(){
   set_all_operations_false()
-  setInverse_called(true);
+  setSparseApproximateInverse_called(true);
 }
-function gauss_handler(){
+function sparse_gauss_handler(){
   set_all_operations_false()
-  setGauss_called(true);
+  setSparseGauss_called(true);
 }
-function luFact_handler(){
+function sparse_luFact_handler(){
   set_all_operations_false()
-  setLuFact_called(true);
+  setSparseLuFact_called(true);
 }
-function jacobi_handler(){
+function sprase_jacobi_handler(){
   set_all_operations_false()
-  setJacobi_called(true);
-}
-function gauss_siedel_handler(){
-  set_all_operations_false()
-  setGauss_siedel_called(true);
+  setSparseJacobi_called(true);
 }
 //maps the functions to a value
-const func_map = {
-  0x10: add_handler,
-  0x11: mult_handler,
-  0x12: transpose_handler,
-  0x13: inverse_handler,
-  0x20: gauss_handler,
-  0x21: luFact_handler,
-  0x30: jacobi_handler,
-  0x31: gauss_siedel_handler,
+const func_sparse_map = {
+  0xA0: sparse_add_handler,
+  0xA1: sprase_matrix_mult_handler,
+  0xA2: sparse_transpose_handler,
+  0xA3: sparse_approximate_inverse_handler,
+  0xB0: sparse_gauss_handler,
+  0xB1: sparse_luFact_handler,
+  0xC0: sprase_jacobi_handler,
 }
 //calls the correct handler based on the ID
 function handleClick(funcId) {
-  const func = func_map[funcId];
+  const func = func_sparse_map[funcId];
   func();
 }
 //when a file is inputed update some states
@@ -114,7 +106,7 @@ const handleSubmit = (event) => {
       const canvas = document.getElementById('matrix-canvas');
       const ctx = canvas.getContext('2d');
       drawSparseMatrix(matrixData, canvas, ctx);
-      const buttons = buttonData.map((button) => (
+      const buttons = sparseButtonData.map((button) => (
         <button key={button.func_id} onClick={() => handleClick(button.func_id)}>
           {button.label}
         </button>
@@ -234,16 +226,6 @@ const handleComputeLuFactorization = (event) => {
 //when a file is submited, validate it and display it
 const handleComputJacobiMethod = (event) => {
   const result = handleJacobiMethod(matrixData,matrixDataTwo);
-  setGotResult(true);
-  const canvas = document.getElementById('matrix-canvas-result');
-  const ctx = canvas.getContext('2d');
-  drawSparseMatrix(result, canvas, ctx);
-  //set_all_operations_false();
-};
-
-//when a file is submited, validate it and display it
-const handleComputeGaussSidel = (event) => {
-  const result = handleGaussSidel(matrixData,matrixDataTwo);
   setGotResult(true);
   const canvas = document.getElementById('matrix-canvas-result');
   const ctx = canvas.getContext('2d');
@@ -389,24 +371,6 @@ return (
            <canvas id="matrix-canvas-two"></canvas>
            <div>
            <button type="submit" onClick={() => handleComputJacobiMethod()}>
-             Compute
-           </button>
-           </div>
-          </div>
-        )}
-        {gauss_siedel_called && (
-           <div>
-           <label for="add">Upload B vector to solve the system using Gauss Siedel</label>
-           <form onSubmit={handleSubmitSecondMatrix}>
-           <label htmlFor="file-input-2" className={isValidMatrixTwo ? "file-input" : "file-input file-invalid"} style={{ backgroundColor: buttonColorSecondFileUpload }}>
-               <i className="fas fa-cloud-upload-alt"></i> {fileNameTwo || "Choose File"}
-             </label>
-             <input id="file-input-2" type="file" name="file" onChange={handleFileInputChangeTwo} />
-             <button type="submit" className="file-input" style={{ backgroundColor: buttonColorSecondFileUpload }} disabled={!selectedFileTwo}>Upload</button>      
-           </form>
-           <canvas id="matrix-canvas-two"></canvas>
-           <div>
-           <button type="submit" onClick={() => handleComputeGaussSidel()}>
              Compute
            </button>
            </div>

@@ -88,6 +88,19 @@ export const buttonData = [
   // { label: 'TBD', func_id: 0x43 },
 ];
 
+export const sparseButtonData = [
+    { label: 'Sparse Add', func_id: 0xA0 },
+    { label: 'Sparse Matrix Multiply', func_id: 0xA1 },
+    { label: 'Sparse Transpose', func_id: 0xA2 },
+    { label: 'Sparse Approximate Inverse', func_id: 0xA3 },
+  // Direct methods for solving 
+    { label: 'Sparse Gauss Elimination', func_id: 0xB0 },
+    { label: 'Sparse LU factorization', func_id: 0xB1 },
+  // Indirect methods for solving 
+    { label: 'Sparse Jacobi Method', func_id: 0xC0 },
+   // { label: 'Sparse Gauss Siedel', func_id: 0xC1 },
+  ];
+
 // Define data format for json objects
 export const packet = {
   'func_id': 0x00,
