@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { sparseButtonData, drawSparseMatrix} from './dataPackaging';
 import './demo.css';
-import {handleAddition, handleMultiply, handleTranspose, handleInverse, handleGaussElimination,
-handleLuFactorization, handleJacobiMethod, handleGaussSidel} from './api';
+import {handleFunctionOneMatrix, handleFunctionTwoMatrix} from './api';
 function Sparse() {
 //these constants set the state for different parts of the frontend
 const [selectedFile, setSelectedFile] = useState(null);
@@ -144,7 +143,7 @@ const handleSubmitSecondMatrix = (event) => {
 //when a file is submited, validate it and display it
 const handleComputeAddition = async (event) => {
   try{
-    const result = await handleAddition(matrixData, matrixDataTwo);
+    const result = await handleFunctionTwoMatrix(matrixData, matrixDataTwo,0xA0);
     console.log(result);
     if(true){
       setGotResult(true);
@@ -162,7 +161,7 @@ const handleComputeAddition = async (event) => {
 //when a file is submited, validate it and display it
 const handleComputeMatrix = async (event) => {
   try{
-    const result = await handleAddition(matrixData, matrixDataTwo);
+    const result = await handleFunctionTwoMatrix(matrixData, matrixDataTwo,0xA1);
     console.log(result);
     if(true){
       setGotResult(true);
@@ -180,7 +179,7 @@ const handleComputeMatrix = async (event) => {
 //when a file is submited, validate it and display it
 const handleComputeTranspose = async (event) => {
   try{
-    const result = await handleTranspose(matrixData);
+    const result = await handleFunctionOneMatrix(matrixData,0xA2);
     setGotResult(true);
     const canvas = document.getElementById('matrix-canvas-result');
     const ctx = canvas.getContext('2d');
@@ -193,7 +192,7 @@ const handleComputeTranspose = async (event) => {
 //when a file is submited, validate it and display it
 const handleComputeInverse = async(event) => {
   try{
-    const result = await handleInverse(matrixData);
+    const result = await handleFunctionOneMatrix(matrixData,0xA3);
     setGotResult(true);
     const canvas = document.getElementById('matrix-canvas-result');
     const ctx = canvas.getContext('2d');
@@ -204,34 +203,32 @@ const handleComputeInverse = async(event) => {
 };
 
 //when a file is submited, validate it and display it
-const handleComputeGaussElimination = (event) => {
-  const result = handleGaussElimination(matrixData,matrixDataTwo);
-  setGotResult(true);
-  const canvas = document.getElementById('matrix-canvas-result');
-  const ctx = canvas.getContext('2d');
-  drawSparseMatrix(result, canvas, ctx);
-  //set_all_operations_false();
+const handleComputeJacobiMethod = async (event) => {
+  try{
+    const result = await handleFunctionTwoMatrix(matrixData, matrixDataTwo,0xC0);
+    console.log(result);
+    if(true){
+      setGotResult(true);
+      const canvas = document.getElementById('matrix-canvas-result');
+      const ctx = canvas.getContext('2d');
+      drawSparseMatrix(result, canvas, ctx);
+    }else{
+      alert("The result is not a valid matrix");
+    }
+  } catch (error) {
+    console.log("Error in handleComputeAddition: ", error);
+  }
 };
 
-//when a file is submited, validate it and display it
-const handleComputeLuFactorization = (event) => {
-  const result = handleLuFactorization(matrixData,matrixDataTwo);
-  setGotResult(true);
-  const canvas = document.getElementById('matrix-canvas-result');
-  const ctx = canvas.getContext('2d');
-  drawSparseMatrix(result, canvas, ctx);
-  //set_all_operations_false();
-};
-
-//when a file is submited, validate it and display it
-const handleComputJacobiMethod = (event) => {
-  const result = handleJacobiMethod(matrixData,matrixDataTwo);
-  setGotResult(true);
-  const canvas = document.getElementById('matrix-canvas-result');
-  const ctx = canvas.getContext('2d');
-  drawSparseMatrix(result, canvas, ctx);
-  //set_all_operations_false();
-};
+// //when a file is submited, validate it and display it
+// const handleComputTwoMatrixMethod = (event) => {
+//   const result = handleFunctionTwoMatrix(matrixData,matrixDataTwo,type);
+//   setGotResult(true);
+//   const canvas = document.getElementById('matrix-canvas-result');
+//   const ctx = canvas.getContext('2d');
+//   drawSparseMatrix(result, canvas, ctx);
+//   //set_all_operations_false();
+// };
 
 return (
   <div className="file-upload">
@@ -338,7 +335,7 @@ return (
           </form>
           <canvas id="matrix-canvas-two"></canvas>
           <div>
-          <button type="submit" onClick={() => handleComputeGaussElimination()}>
+          <button type="submit" onClick={() => handleComputeJacobiMethod()}>
             Compute
           </button>
           </div>
@@ -356,7 +353,7 @@ return (
            </form>
            <canvas id="matrix-canvas-two"></canvas>
            <div>
-           <button type="submit" onClick={() => handleComputeLuFactorization()}>
+           <button type="submit" onClick={() => handleComputeJacobiMethod()}>
              Compute
            </button>
            </div>
@@ -374,7 +371,7 @@ return (
            </form>
            <canvas id="matrix-canvas-two"></canvas>
            <div>
-           <button type="submit" onClick={() => handleComputJacobiMethod()}>
+           <button type="submit" onClick={() => handleComputeJacobiMethod()}>
              Compute
            </button>
            </div>

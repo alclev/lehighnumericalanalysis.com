@@ -139,3 +139,22 @@ export const handleGaussSidel = function (matrixA,vectorB) {
 };
 
 //SPARSE FUNCTION
+export const handleFunctionTwoMatrix = function (matrixA,matrixB,type) {
+  //data to send to backend
+  const data = {
+    operation: type,
+    args: 2,
+    data: matrixA + DELIMITER + matrixB + DELIMITER,
+  };
+  return sendRequest(data);
+};
+
+export const handleFunctionOneMatrix = function (matrixA,type) {
+  //data to send to backend
+  const data = {
+    operation: type,
+    args: 2,
+    data: matrixA + DELIMITER,
+  };
+  return sendRequest(data);
+};

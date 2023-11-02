@@ -94,8 +94,8 @@ export const sparseButtonData = [
     { label: 'Transpose', func_id: 0xA2 },
     { label: 'Approximate Inverse', func_id: 0xA3 },
   // Direct methods for solving 
-    { label: 'Gauss Elimination', func_id: 0xB0 },
-    { label: 'LU factorization', func_id: 0xB1 },
+  //  { label: 'Gauss Elimination', func_id: 0xB0 },
+  //  { label: 'LU factorization', func_id: 0xB1 },
   // Indirect methods for solving 
     { label: 'Jacobi Method', func_id: 0xC0 },
    // { label: 'Sparse Gauss Siedel', func_id: 0xC1 },
