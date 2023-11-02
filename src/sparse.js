@@ -290,7 +290,7 @@ return (
         )}
         {mult_called && (
           <div>
-          <label for="add">Upload a matrix to add:</label>
+          <label for="add">Upload a matrix to multiply:</label>
           <form onSubmit={handleSubmitSecondMatrix}>
           <label htmlFor="file-input-2" className={isValidMatrixTwo ? "file-input" : "file-input file-invalid"} style={{ backgroundColor: buttonColorSecondFileUpload }}>
               <i className="fas fa-cloud-upload-alt"></i> {fileNameTwo || "Choose File"}
