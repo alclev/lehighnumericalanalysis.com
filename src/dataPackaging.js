@@ -28,7 +28,7 @@ export function drawMatrix(matrixData, canvas, ctx) {
       ctx.font = '24px Arial';
       ctx.fillStyle = 'grey';
       ctx.textAlign = 'center';
-      ctx.fillText(data[j * num_cols + i], j * BOX_SIZE + BOX_SIZE / 2, i * BOX_SIZE + BOX_SIZE / 2);
+      ctx.fillText(data[i * num_cols + j], j * BOX_SIZE + BOX_SIZE / 2, i * BOX_SIZE + BOX_SIZE / 2);
     }
   }
 }
