@@ -142,15 +142,13 @@ export function drawSparseMatrix(matrixData, canvas, ctx) {
 
   canvas.width = num_cols * BOX_SIZE;
   canvas.height = num_rows * BOX_SIZE;
-  console.log("Height: "+num_rows);
-  console.log("Width: "+num_cols);
 
   // Iterate through the rows and columns of the matrix
   for (let i = 0; i < num_rows; i++) {
     for (let j = 0; j < num_cols; j++) {
       // Draw a cell with a border
       ctx.beginPath();
-      ctx.rect(i * BOX_SIZE, j * BOX_SIZE, BOX_SIZE, BOX_SIZE);
+      ctx.rect(j * BOX_SIZE, i * BOX_SIZE, BOX_SIZE, BOX_SIZE);
       ctx.stroke();
 
       // Display the element of the matrix in the cell
@@ -159,7 +157,7 @@ export function drawSparseMatrix(matrixData, canvas, ctx) {
       ctx.textAlign = 'center';
 
       const value = data[`${i}-${j}`];
-      ctx.fillText(value || '0.00', i * BOX_SIZE + BOX_SIZE / 2, j * BOX_SIZE + BOX_SIZE / 2);
+      ctx.fillText(value || '0.00', j * BOX_SIZE + BOX_SIZE / 2, i * BOX_SIZE + BOX_SIZE / 2);
     }
   }
 }
