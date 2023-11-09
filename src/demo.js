@@ -457,7 +457,7 @@ function Demo() {
               {gotResult && (
                 <div>
                   <p>And the result is...</p>
-                  <button type="button" onClick={downloadResultMatrix}>
+                  <button type="button" id="downloadLink" onClick={downloadResultMatrix}>
                     Download Result Matrix
                   </button>
                 </div>
