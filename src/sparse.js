@@ -35,6 +35,9 @@ function set_all_operations_false(){
   setSparseLuFact_called(false);
   setSparseJacobi_called(false);
   setGotResult(false);
+  const resultCanvas = document.getElementById('matrix-canvas-result');
+  const resultCtx = resultCanvas.getContext('2d');
+  resultCtx.clearRect(0, 0, resultCanvas.width, resultCanvas.height);
 }
 //when we get an add, set all the other operations to false
 function sparse_add_handler(){
