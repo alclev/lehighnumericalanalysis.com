@@ -255,7 +255,7 @@ return (
         {transpose_called && (
           <div>
             <p>Transpose the matrix.</p>
-            <button type="submit" onClick={() => handleFunctionOneMatrix(0xA2)}>
+            <button type="submit" onClick={() => handleComputeOneMatrix(0xA2)}>
               Compute
             </button>
           </div>
