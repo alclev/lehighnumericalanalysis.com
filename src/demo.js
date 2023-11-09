@@ -11,7 +11,7 @@ function Demo() {
   const [selectedFileTwo, setSelectedFileTwo] = useState(null);
   const [matrixData, setMatrixData] = useState(null);
   const [matrixDataTwo, setMatrixDataTwo] = useState(null);
-  const [matrixDataResult, setMatrixDataResult] = useState(null);
+  const [resultMatrixData, setResultMatrixData] = useState(null);
   const [gotResult, setGotResult] = useState(null);
   const [filename, setFilename] = useState(null);
   const [fileNameTwo, setfileNameTwo] = useState(null);
@@ -156,6 +156,7 @@ function Demo() {
       console.log(result);
       if(parseMatrix(result)){
         setGotResult(true);
+        setResultMatrixData(result);  
         const canvas = document.getElementById('matrix-canvas-result');
         const ctx = canvas.getContext('2d');
         drawMatrix(result, canvas, ctx);
@@ -174,6 +175,7 @@ function Demo() {
       console.log(result);
       if(parseMatrix(result)){
         setGotResult(true);
+        setResultMatrixData(result);  
         const canvas = document.getElementById('matrix-canvas-result');
         const ctx = canvas.getContext('2d');
         drawMatrix(result, canvas, ctx);
@@ -190,6 +192,7 @@ function Demo() {
     try{
       const result = await handleTranspose(matrixData);
       setGotResult(true);
+      setResultMatrixData(result);  
       const canvas = document.getElementById('matrix-canvas-result');
       const ctx = canvas.getContext('2d');
       drawMatrix(result, canvas, ctx);
@@ -203,6 +206,7 @@ function Demo() {
     try{
       const result = await handleInverse(matrixData);
       setGotResult(true);
+      setResultMatrixData(result);  
       const canvas = document.getElementById('matrix-canvas-result');
       const ctx = canvas.getContext('2d');
       drawMatrix(result, canvas, ctx);
@@ -216,6 +220,7 @@ function Demo() {
     try{
       const result = await handleGaussElimination(matrixData,matrixDataTwo);
       setGotResult(true);
+      setResultMatrixData(result);  
       const canvas = document.getElementById('matrix-canvas-result');
       const ctx = canvas.getContext('2d');
       drawMatrix(result, canvas, ctx);
@@ -229,6 +234,7 @@ function Demo() {
     try{
       const result = await handleLuFactorization(matrixData);
       setGotResult(true);
+      setResultMatrixData(result);  
       const canvas = document.getElementById('matrix-canvas-result');
       const ctx = canvas.getContext('2d');
       drawMatrix(result, canvas, ctx);
@@ -242,6 +248,7 @@ function Demo() {
     try{
       const result = await handleJacobiMethod(matrixData, matrixDataTwo);
       setGotResult(true);
+      setResultMatrixData(result);  
       const canvas = document.getElementById('matrix-canvas-result');
       const ctx = canvas.getContext('2d');
       drawMatrix(result, canvas, ctx);
@@ -255,11 +262,26 @@ function Demo() {
     try{
       const result = await handleGaussSidel(matrixData, matrixDataTwo);
       setGotResult(true);
+      setResultMatrixData(result);  
       const canvas = document.getElementById('matrix-canvas-result');
       const ctx = canvas.getContext('2d');
       drawMatrix(result, canvas, ctx);
     } catch (error) {
       console.log("Error in handleComputeAddition: ", error);
+    }
+  };
+
+  const downloadResultMatrix = () => {
+    if (resultMatrixData) {
+      const blob = new Blob([resultMatrixData], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+  
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'result_matrix.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
     }
   };
 
@@ -432,8 +454,11 @@ function Demo() {
               {gotResult && (
                 <div>
                   <p>And the result is...</p>
-                   
+                  <button type="button" onClick={downloadResultMatrix}>
+                    Download Result Matrix
+                  </button>
                 </div>
+              
               )}
               <canvas id="matrix-canvas-result"></canvas>
     </div>
