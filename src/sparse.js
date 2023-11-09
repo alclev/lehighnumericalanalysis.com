@@ -18,7 +18,6 @@ const [isValidMatrixTwo, setIsValidMatrixTwo] = useState(true); // assuming it i
 const [buttons, setButtons] = useState([]);
 const [add_called, setSparseAdd_called] = useState(false);
 const [mult_called, setSparseMatrixMult_called] = useState(false);
-const [scalar, setScalar] = useState('');
 const [transpose_called, setSparseTranspose_called] = useState(false);
 const [inverse_called, setSparseApproximateInverse_called] = useState(false);
 const [gauss_called, setSparseGauss_called] = useState(false);
@@ -141,9 +140,9 @@ const handleSubmitSecondMatrix = (event) => {
 };
 
 //when a file is submited, validate it and display it
-const handleComputeAddition = async (event) => {
+const handleComputeTwoMatrix = async (operationId) => {
   try{
-    const result = await handleFunctionTwoMatrix(matrixData, matrixDataTwo,0xA0);
+    const result = await handleFunctionTwoMatrix(matrixData, matrixDataTwo,operationId);
     console.log(result);
     if(true){
       setGotResult(true);
@@ -159,9 +158,9 @@ const handleComputeAddition = async (event) => {
 };
 
 //when a file is submited, validate it and display it
-const handleComputeMatrix = async (event) => {
+const handleComputeOneMatrix = async (operationId) => {
   try{
-    const result = await handleFunctionTwoMatrix(matrixData, matrixDataTwo,0xA1);
+    const result = await handleFunctionOneMatrix(matrixData, matrixDataTwo,operationId);
     console.log(result);
     if(true){
       setGotResult(true);
@@ -175,60 +174,6 @@ const handleComputeMatrix = async (event) => {
     console.log("Error in handleComputeAddition: ", error);
   }
 };
-
-//when a file is submited, validate it and display it
-const handleComputeTranspose = async (event) => {
-  try{
-    const result = await handleFunctionOneMatrix(matrixData,0xA2);
-    setGotResult(true);
-    const canvas = document.getElementById('matrix-canvas-result');
-    const ctx = canvas.getContext('2d');
-    drawSparseMatrix(result, canvas, ctx);
-  } catch (error) {
-    console.log("Error in handleComputeAddition: ", error);
-  }
-};
-
-//when a file is submited, validate it and display it
-const handleComputeInverse = async(event) => {
-  try{
-    const result = await handleFunctionOneMatrix(matrixData,0xA3);
-    setGotResult(true);
-    const canvas = document.getElementById('matrix-canvas-result');
-    const ctx = canvas.getContext('2d');
-    drawSparseMatrix(result, canvas, ctx);
-  } catch (error) {
-    console.log("Error in handleComputeAddition: ", error);
-  }
-};
-
-//when a file is submited, validate it and display it
-const handleComputeJacobiMethod = async (event) => {
-  try{
-    const result = await handleFunctionTwoMatrix(matrixData, matrixDataTwo,0xC0);
-    console.log(result);
-    if(true){
-      setGotResult(true);
-      const canvas = document.getElementById('matrix-canvas-result');
-      const ctx = canvas.getContext('2d');
-      drawSparseMatrix(result, canvas, ctx);
-    }else{
-      alert("The result is not a valid matrix");
-    }
-  } catch (error) {
-    console.log("Error in handleComputeAddition: ", error);
-  }
-};
-
-// //when a file is submited, validate it and display it
-// const handleComputTwoMatrixMethod = (event) => {
-//   const result = handleFunctionTwoMatrix(matrixData,matrixDataTwo,type);
-//   setGotResult(true);
-//   const canvas = document.getElementById('matrix-canvas-result');
-//   const ctx = canvas.getContext('2d');
-//   drawSparseMatrix(result, canvas, ctx);
-//   //set_all_operations_false();
-// };
 
 return (
   <div className="file-upload">
@@ -281,7 +226,7 @@ return (
             </form>
             <canvas id="matrix-canvas-two"></canvas>
             <div>
-            <button type="submit" onClick={() => handleComputeAddition()}>
+            <button type="submit" onClick={() => handleComputeTwoMatrix(0xA0)}>
               Compute
             </button>
 
@@ -300,7 +245,7 @@ return (
           </form>
           <canvas id="matrix-canvas-two"></canvas>
           <div>
-          <button type="submit" onClick={() => handleComputeMatrix()}>
+          <button type="submit" onClick={() => handleComputeTwoMatrix(0xA1)}>
             Compute
           </button>
 
@@ -310,7 +255,7 @@ return (
         {transpose_called && (
           <div>
             <p>Transpose the matrix.</p>
-            <button type="submit" onClick={() => handleComputeTranspose()}>
+            <button type="submit" onClick={() => handleFunctionOneMatrix(0xA2)}>
               Compute
             </button>
           </div>
@@ -318,7 +263,7 @@ return (
         {inverse_called && (
           <div>
             <p>Inverse the matrix.</p>
-            <button type="submit" onClick={() => handleComputeInverse()}>
+            <button type="submit" onClick={() => handleFunctionOneMatrix(0xA3)}>
               Compute
             </button>
           </div>
@@ -335,7 +280,7 @@ return (
           </form>
           <canvas id="matrix-canvas-two"></canvas>
           <div>
-          <button type="submit" onClick={() => handleComputeJacobiMethod()}>
+          <button type="submit" onClick={() => handleComputeTwoMatrix(0xFF)}>
             Compute
           </button>
           </div>
@@ -353,7 +298,7 @@ return (
            </form>
            <canvas id="matrix-canvas-two"></canvas>
            <div>
-           <button type="submit" onClick={() => handleComputeJacobiMethod()}>
+           <button type="submit" onClick={() => handleComputeTwoMatrix(0xFF)}>
              Compute
            </button>
            </div>
@@ -371,7 +316,7 @@ return (
            </form>
            <canvas id="matrix-canvas-two"></canvas>
            <div>
-           <button type="submit" onClick={() => handleComputeJacobiMethod()}>
+           <button type="submit" onClick={() => handleComputeTwoMatrix(0xC0)}>
              Compute
            </button>
            </div>
