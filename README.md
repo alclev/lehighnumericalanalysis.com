@@ -1,20 +1,23 @@
-# Making any modification to the website
+# A Programming Platform for Numerical Analysis - Frontend
 
-1. 'git pull' to get the latest version of the code
-2. Make the modifications that you want to make
-3. Use the dev.sh script as you are developing and the deploy.sh when you are ready to push changes
-    **Make sure you use deploy.sh before next steps**
-4. Remotely log into the ocean droplet (see below)
-5. 'cd /var/www/lehighnumericalanalysis.com'
-6. 'git pull' 
-7. 'exit' to exit the remote login
+The goal of this project is to learn Numerical analysis through programming. We developed a library of matrix operations and solvers in C++ with no dependencies. We aimed for accessibility and high performance by making a front-end website to demonstrate the operations as well as developing parallel versions of the algorithms.
 
-# Remote login to the ocean droplet
+## Getting started
 
-1. 'ssh 159.203.157.193 -l root'
-Password: augustusbuck
+To run the frontend locally make sure to have ``npm`` installed
 
-# Pi
-username: ubuntu
-password: Capstone23
+1. cd src/
+2. npm start
 
+This will start the front end locally
+
+## File Description
+
+* **src/App.js** - Has the app header
+*  **src/about.js** - Has the about page
+* **src/api.js** - Has the Javascript code to send/receive requests to the backend through ``Axios``
+*  **src/datapacking.js** - Has the Javascript code to parse/validate sparse and dense matrices
+*  **src/demo.js** - Has the dense demo page
+* **src/download.js** - Has the download page
+* **src/home.js** - Has the home page
+* **src/sparse.js** - Has the sparse demo page
